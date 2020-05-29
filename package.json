@@ -1,0 +1,25 @@
+{
+  "name": "syswiki",
+  "version": "1.0.0",
+  "description": "System Engineer Wiki",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bes0n/SYSWIKI.git"
+  },
+  "keywords": [
+    "SYSWIKI"
+  ],
+  "author": "BesOn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bes0n/SYSWIKI/issues"
+  },
+  "homepage": "https://github.com/Bes0n/SYSWIKI#readme",
+  "dependencies": {
+    "docsify-darklight-theme": "^3.0.2"
+  }
+}
