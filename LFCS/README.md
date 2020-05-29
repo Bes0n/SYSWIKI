@@ -119,7 +119,7 @@ Hierarchy:
 By using command ``` mount ``` we can mount different disks to the different directories.
 Directories in linux defined by *FHS* - Filesystem Hierarchy Standards 
 
-![img](https://github.com/Bes0n/LFCS/blob/master/images/img1.JPG)
+![img](https://github.com/Bes0n/SYSWIKI/blob/master/LFCS/images/img1.JPG)
 
 ###### 3.2 Listing files with ls command
 - ``` ls -l ``` - long list of items
