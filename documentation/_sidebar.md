@@ -1,3 +1,4 @@
-- Getting started
+* [HOME](/)
+* [LFCS](/LFCS/)
 
-  - [Quick Start](quickstart.md)
+  <!-- - [Quick Start](quickstart.md) -->

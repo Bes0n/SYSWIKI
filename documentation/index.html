@@ -22,6 +22,8 @@
     window.$docsify = {
       search: 'auto',
       coverpage: true,
+      loadSidebar: true,
+      subMaxLevel: 2,
       name: 'System Engineer Wiki',
       search: {
         noData: {
@@ -36,7 +38,7 @@
         function(hook) {
           var footer = [
             '<footer style="text-align: center;margin-top: 50px;">',
-            '<span> BesOn  &copy; 2020 </span>',
+            '<span> Made by BesOn  &copy; 2020 </span>',
             '</footer>'
           ].join('');
 
