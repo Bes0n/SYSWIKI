@@ -1,4 +1,4 @@
 * [HOME](/)
-* [LFCS](/LFCS/)
+* [LFCS](/lfcs/)
 
   <!-- - [Quick Start](quickstart.md) -->
