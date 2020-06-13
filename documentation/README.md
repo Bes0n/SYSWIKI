@@ -1,5 +1,5 @@
 # Content List
-- [LFCS - Linux Foundation Certified System Administrator](/LFCS/)
+- [LFCS - Linux Foundation Certified System Administrator](/lfcs/)
 - **CKA** - Certified Kubernetes Administrator
 - **Terraform** - Using Terraform to Manage Applications and Infrastructure
 - **EX407** - Red Hat Certified Specialist in Ansible Automation
