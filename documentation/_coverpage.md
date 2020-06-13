@@ -1,5 +1,5 @@
 <!-- ![logo](https://cdn.jsdelivr.net/npm/docsify-darklight-theme@latest/icons/docsify-darklight-theme-logo.png) -->
-
+![logo](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/rick_logo.png ':size=100%')
 
 # Welcome to the System Engineer Wiki
 
