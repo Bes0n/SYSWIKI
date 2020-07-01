@@ -78,11 +78,12 @@ Preparation for Cloud Native Certified Kubernetes Administrator
     - You can have zero or mane **worker** nodes
 
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img1.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img1.png)
+
 
 - Here what these components are used for:
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img2.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img2.png)
 
 Working with **kubectl**:
 
@@ -120,7 +121,7 @@ kube-system       Active   9m42s
 
 This is how Application Running on Kubernetes looks like:
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img3.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img3.png)
 
 - Let's deploy simple POD with nginx image. JSON and YAML syntax accepted
 
@@ -197,7 +198,7 @@ Events:
 
 - ``` kubectl delete pod nginx ``` - delete your **nginx** pod
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img4.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img4.png)
 
 ### Kubernetes API Primitives
 Every component in the Kubernetes system makes a request to the API server. The kubectl command line utility processes those API calls for us and allows us to format our request in a certain way. In this lesson, we will learn how Kubernetes accepts the instructions to run deployments and go through the YAML script that is used to tell the control plane what our environment should look like.
@@ -278,7 +279,7 @@ nginx-deployment-54f57cf6bf-wbw22   1/1     Running   0          135m
 
 By **label selectors** you can perform several actions on PODs which have these labels. You can edit, remove that labeled objects. 
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img5.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img5.png)
 
 
 ### Kubernetes Services and Network Primitives
@@ -332,9 +333,9 @@ kubernetes       ClusterIP   10.96.0.1      <none>        443/TCP        4h23m
 nginx-nodeport   NodePort    10.96.241.16   <none>        80:30080/TCP   73s
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img6.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img6.png)
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img7.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img7.png)
 
 - ``` kubectl create -f .\busybox.yml ``` Let's create **busybox** pod
 
@@ -354,7 +355,7 @@ spec:
 
 - ``` kubectl exec busybox -- curl 10.96.241.16:80 ``` - execute command from **busybox POD** to **NodePort service**. Here one POD reached another POD by using **kube-proxy**
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img8.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img8.png)
 
 
 ### Exploring the Kubernetes Cluster via the Command Line
@@ -372,14 +373,14 @@ spec:
 ### Release Binaries, Provisioning, and Types of Clusters
 There are many choices when it comes to choosing where to create your Kubernetes cluster. In this lesson, we will focus on what you need to know for the CKA exam — specifically, how the cluster build relates to the types of clusters you will face in the exam.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img9.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img9.png)
   
-![img](https://github.com/Bes0n/CKA/blob/master/images/img10.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img10.png)
 
 ### Installing Kubernetes Master and Nodes
 Now that we’ve considered all the different types of clusters and where to locate the tools we need to install a cluster, let’s get to it! In this lesson, we will go through the all steps to install a three-node cluster.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img11.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img11.png)
 
 Get the Docker gpg key:
 ```
@@ -480,7 +481,7 @@ View the kube-scheduler YAML (from that output you can see who is the current le
 kubectl get endpoints kube-scheduler -n kube-system -o yaml
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img12.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img12.png)
 
 
 Create a stacked etcd topology using kubeadm:
@@ -493,7 +494,7 @@ Watch as pods are created in the default namespace:
 kubectl get pods -n kube-system -w
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img13.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img13.png)
 
 
 ### Configuring Secure Cluster Communications
@@ -504,7 +505,7 @@ View the kube-config:
 cat .kube/config | more
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img14.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img14.png)
 
 View the service account token:
 ```
@@ -546,12 +547,12 @@ List the service account resources in your cluster:
 kubectl get serviceaccounts
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img15.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img15.png)
 
 ### Running End-to-End Tests on Your Cluster
 Running end-to-end tests ensures your application will run efficiently without having to worry about cluster health problems. Kubetest is a useful tool for providing end-to-end tests — however, it is beyond the scope of this exam. In this lesson, we will go through the practice of testing our ability to run deployments, run pods, expose a container, execute a command from a container, run a service, and check the overall health of our nodes and pods for conditions.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img16.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img16.png)
 
 Run a simple nginx deployment:
 ```
@@ -618,7 +619,7 @@ View detailed information about the pods:
 kubectl describe pods
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img17.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img17.png)
 
 ### Installing and Testing the Components of a Kubernetes Cluster
 
@@ -627,7 +628,6 @@ kubectl describe pods
 - Run the following commands on all three nodes to get the Docker gpg key and add it to your repository:
 ```
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
@@ -635,11 +635,9 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 - Run the following commands on all three nodes to get the Kubernetes gpg key and add it to your repository:
 ```
 curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-
 cat << EOF | sudo tee /etc/apt/sources.list.d/kubernetes.list
 deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
-
 sudo apt-get update
 ```
 
@@ -647,9 +645,7 @@ sudo apt-get update
 - Run the following command on all three nodes to install docker, kubelet, kubeadm, and kubectl:
 ```
 sudo apt-get install -y docker-ce=18.06.1~ce~3-0~ubuntu kubelet=1.13.5-00 kubeadm=1.13.5-00 kubectl=1.13.5-00
-
 sudo apt-mark hold kubelet kubeadm kubectl docker-ce #mark installed applications to hold versions
-
 ```
 
 **Initialize the Kubernetes cluster.**
@@ -662,9 +658,7 @@ sudo kubeadm init --pod-network-cidr=10.244.0.0/16
 - In the master node, run the following commands to set up local kubeconfig:
 ```
 mkdir -p $HOME/.kube
-
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
@@ -686,14 +680,12 @@ sudo kubeadm join 'KUBERNETES_MASTER_IP':6443 --token 'UNIQUE_TOKEN' --discovery
 - In the master node, run the following commands to run a deployment of ngnix and verify:
 ```
 kubectl create deployment nginx --image=nginx
-
 kubectl get deployments
 ```
 
 **Verify the pod is running and available.**
 ```
 kubectl get pods
-
 kubectl describe pods nginx-5c7588df-wgrg6
 ```
 
@@ -720,7 +712,6 @@ kubectl exec -it <pod_name> -- nginx -v
 - In the original master node terminal, run the following commands to create a NodePort service and view the service:
 ```
 kubectl expose deployment nginx --port 80 --type NodePort
-
 kubectl get services
 ```
 
@@ -734,7 +725,7 @@ curl -I localhost:$node_port
 ### Upgrading the Kubernetes Cluster
 kubeadm allows us to upgrade our cluster components in the proper order, making sure to include important feature upgrades we might want to take advantage of in the latest stable version of Kubernertes. In this lesson, we will go through upgrading our cluster from version 1.13.5 to 1.14.1.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img18.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img18.png)
 
 Get the version of the API server:
 ```
@@ -782,7 +773,6 @@ sudo kubeadm upgrade apply v1.14.1
 ```
 
 Release the hold on the version of kubectl:
-
 ```
 sudo apt-mark unhold kubectl
 ```
@@ -807,12 +797,12 @@ Hold the version of kubelet at 1.14.1:
 sudo apt-mark hold kubelet
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img19.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img19.png)
 
 ### Operating System Upgrades within a Kubernetes Cluster
 When we need to take a node down for maintenance, Kubernetes makes it easy to evict the pods on that node, take it down, and then continue scheduling pods after the maintenance is complete. Furthermore, if the node needs to be decommissioned, you can just as easily remove the node and replace it with a new one, joining it to the cluster.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img20.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img20.png)
 
 See which pods are running on which nodes:
 ```
@@ -855,12 +845,12 @@ Print the kubeadm join command to join a node to the cluster:
 sudo kubeadm token create [token_name] --ttl 2h --print-join-command
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img21.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img21.png)
 
 ### Backing Up and Restoring a Kubernetes Cluster
 Backing up your cluster can be a useful exercise, especially if you have a single etcd cluster, as all the cluster state is stored there. The etcdctl utility allows us to easily create a snapshot of our cluster state (etcd) and save this to an external location. In this lesson, we’ll go through creating the snapshot and talk about restoring in the event of failure.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img22.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img22.png)
 
 Get the etcd binaries:
 ```
@@ -907,7 +897,7 @@ Copy the etcd directory to another server:
 scp etcd.tar.gz cloud_user@18.219.235.42:~/
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img23.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img23.png)
 
 ### Upgrading the Kubernetes Cluster Using kubeadm
 **Install Version 1.13.5 of kubeadm**
@@ -996,9 +986,9 @@ kubectl version
 
 Kubernetes keeps networking simple for effective communication between pods, even if they are located on a different node. In this lesson, we’ll talk about pod communication from within a node, including how to inspect the virtual interfaces, and then get into what happens when a pod wants to talk to another pod on a different node.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img24.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img24.png)
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img25.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img25.png)
 
 See which node our pod is on:
 ```
@@ -1030,12 +1020,12 @@ Use nsenter to run a command in the process's network namespace:
 nsenter -t [container_pid] -n ip addr
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img26.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img26.png)
 
 ### Container Network Interface (CNI)
 A Container Network Interface (CNI) is an easy way to ease communication between containers in a cluster. The CNI has many responsibilities, including IP management, encapsulating packets, and mappings in userspace. In this lesson, we will cover the details of the Flannel CNI we used in our Linux Academy cluster and talk about the ways in which we simplified communication in our cluster.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img27.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img27.png)
 
 Apply the Flannel CNI plugin:
 ```
@@ -1045,7 +1035,7 @@ kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8
 ### Service Networking
 Services allow our pods to move around, get deleted, and replicate, all without having to manually keep track of their IP addresses in the cluster. This is accomplished by creating one gateway to distribute packets evenly across all pods. In this lesson, we will see the differences between a **NodePort** service and a **ClusterIP** service and see how the iptables rules take effect when traffic is coming in.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img28.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img28.png)
 
 AML for the nginx NodePort service:
 ```
@@ -1092,7 +1082,7 @@ sudo iptables-save | grep KUBE | grep nginx
 ### Ingress Rules and Load Balancers
 When handling traffic from outside sources, there are two ways to direct that traffic to your pods: deploying a load balancer, and creating an ingress controller and an Ingress resource. In this lesson, we will talk about the benefits of each and how Kubernetes distributes traffic to the pods on a node to reduce latency and direct traffic to the appropriate services within your cluster.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img29.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img29.png)
 
 View the list of services:
 ```
@@ -1169,7 +1159,7 @@ Set the annotation to route load balancer traffic local to the node:
 kubectl annotate service kubeserve2 externalTrafficPolicy=Local
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img30.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img30.png)
 
 The YAML for an Ingress resource:
 ```
@@ -1216,7 +1206,7 @@ curl http://kubeserve2.example.com
 ### Cluster DNS
 CoreDNS is now the new default DNS plugin for Kubernetes. In this lesson, we’ll go over the hostnames for pods and services. We will also discover how you can customize DNS to include your own nameservers.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img31.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img31.png)
 
 View the CoreDNS pods in the **kube-system** namespace:
 ```
@@ -1382,7 +1372,7 @@ kubectl exec busybox -- nslookup nginx
 ### Configuring the Kubernetes Scheduler
 The default scheduler in Kubernetes attempts to find the best node for your pod by going through a series of steps. In this lesson, we will cover the steps in detail in order to better understand the scheduler’s function when placing pods on nodes to maximize uptime for the applications running in your cluster. We will also go through how to create a deployment with node affinity.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img32.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img32.png)
 
 Label your node as being located in availability zone 1:
 ```
@@ -1447,12 +1437,12 @@ View which pods landed on which nodes:
 kubectl get pods -o wide
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img33.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img33.png)
 
 ### Running Multiple Schedulers for Multiple Pods
 In Kubernetes, you can run multiple schedulers simultaneously. You can then use different schedulers to schedule different pods. You may, for example, want to set different rules for the scheduler to run all of your pods on one node. In this lesson, I will show you how to deploy a new scheduler alongside your default scheduler and then schedule three different pods using the two schedulers.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img34.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img34.png)
 
 **ClusterRole.yaml**
 ```
@@ -1676,12 +1666,12 @@ View the pods as they are created:
 kubectl get pods -o wide
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img35.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img35.png)
 
 ### Scheduling Pods with Resource Limits and Label Selectors
 In order to share the resources of your node properly, you can set resource limits and requests in Kubernetes. This allows you to reserve enough CPU and memory for your application while still maintaining system health. In this lesson, we will create some requests and limits in our pod YAML to show how it’s used by the node.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img36.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img36.png)
 
 View the capacity and the allocatable info from a node:
 ```
@@ -1793,13 +1783,13 @@ Notes:
   - Limits resources - pods will not consume that set limits. But if you set more than node can provide kubernetes will kill that pod
   - Using top command from pod will show you resources of pod, but node's resources.  
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img37.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img37.png)
 
 
 ### DaemonSets and Manually Scheduled Pods
 DaemonSets do not use a scheduler to deploy pods. In fact, there are currently DaemonSets in the Kubernetes cluster that we made. In this lesson, I will show you where to find those and how to create your own DaemonSet pods to deploy without the need for a scheduler.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img38.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img38.png)
 
 Find the DaemonSet pods that exist in your kubeadm cluster:
 ```
@@ -1868,12 +1858,12 @@ Pick the label to choose for your DaemonSet:
 kubectl get nodes chadcrowell3c.mylabserver.com --show-labels
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img39.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img39.png)
 
 ### Displaying Scheduler Events
 There are multiple ways to view the events related to the scheduler. In this lesson, we’ll look at ways in which you can troubleshoot any problems with your scheduler or just find out more information.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img40.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img40.png)
 
 View the name of the scheduler pod:
 ```
@@ -1915,7 +1905,7 @@ The location of a systemd service scheduler pod:
 /var/log/kube-scheduler.log
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img41.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img41.png)
 
 ### Scheduling Pods with Taints and Tolerations in Kubernetes
 
@@ -1989,6 +1979,7 @@ kubectl get pods -o wide
 ```
 
 - Verify the toleration of the production pod:
+
 ```
 kubectl get pods <pod_name> -o yaml
 ```
@@ -1997,7 +1988,7 @@ kubectl get pods <pod_name> -o yaml
 ### Deploying an Application, Rolling Updates, and Rollbacks
 We already know Kubernetes will run pods and deployments, but what happens when you need to update or change the version of your application running inside of the Kubernetes cluster? That’s where rolling updates come in, allowing you to update the app image with zero downtime. In this lesson, we’ll go over a rolling update, how to roll back, and how to pause the update if things aren’t going well.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img42.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img42.png)
 
 The YAML for a deployment:
 ```
@@ -2111,12 +2102,12 @@ Notes:
     - in **apply** if deployment doesn't exist it will be created and applied
     - in **replace** deployment must exist, otherwise deployment will fail
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img43.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img43.png)
 
 ### Configuring an Application for High Availability and Scale
 Continuing from the last lesson, we will go through how Kubernetes will save you from EVER releasing code with bugs. Then, we will talk about ConfigMaps and secrets as a way to pass configuration data to your apps.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img44.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img44.png)
 
 The YAML for a readiness probe:
 ```
@@ -2316,12 +2307,12 @@ Get the keys from the volume mounted to the container with the secrets:
 kubectl exec secret-volume-pod -- ls /etc/certs
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img45.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img45.png)
 
 ### Creating a Self-Healing Application
 In this lesson, we’ll go through the power of ReplicaSets, which make your application self-healing by replicating pods and moving them around and spinning them up when nodes fail. We’ll also talk about StatefulSets and the benefit they provide.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img46.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img46.png)
 
 The YAML for a ReplicaSet:
 ```
@@ -2427,7 +2418,7 @@ Describe the StatefulSets:
 kubectl describe statefulsets
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img47.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img47.png)
 
 ### Performing a Rolling Update of an Application in Kubernetes
 **Create and roll out version 1 of the application, and verify a successful deployment.**
@@ -2522,7 +2513,7 @@ curl http://<ip-address-of-the-service>
 ### Persistent Volumes
 In Kubernetes, pods are ephemeral. This creates a unique challenge with attaching storage directly to the filesystem of a container. Persistent Volumes are used to create an abstraction layer between the application and the underlying storage, making it easier for the storage to follow the pods as they are deleted, moved, and created within your Kubernetes cluster.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img48.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img48.png)
 
 In the Google Cloud Engine, find the region your cluster is in:
 ```
@@ -2655,12 +2646,12 @@ View our Persistent Volumes:
 kubectl get persistentvolumes
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img49.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img49.png)
 
 ### Volume Access Modes
 Volume access modes are how you specify the access of a node to your Persistent Volume. There are three types of access modes: ReadWriteOnce, ReadOnlyMany, and ReadWriteMany. In this lesson, we will explain what each of these access modes means and two VERY IMPORTANT things to remember when using your Persistent Volumes with pods.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img50.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img50.png)
 
 The YAML for a Persistent Volume:
 ```
@@ -2688,7 +2679,7 @@ kubectl get pv
 ### Persistent Volume Claims
 Persistent Volume Claims (PVCs) are a way for an application developer to request storage for the application without having to know where the underlying storage is. The claim is then bound to the Persistent Volume (PV), and it will not be released until the PVC is deleted. In this lesson, we will go through creating a PVC and accessing storage within our persistent disk.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img51.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img51.png)
 
 The YAML for a PVC:
 ```
@@ -2790,12 +2781,12 @@ spec:
     fsType: ext4
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img52.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img52.png)
 
 ### Storage Objects
 There’s an even easier way to provision storage in Kubernetes with **StorageClass** objects. Also, your storage is safe from data loss with the “Storage Object in Use Protection” feature, which ensures any pods using a Persistent Volume will not lose the data on the volume as long as it is actively mounted. We’ve been using Google Storage for this section, but there are many different volume types you can use in Kubernetes. In this lesson, we will talk about the **hostPath** volume and the **empty** directory volume type.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img53.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img53.png)
 
 See the PV protection on your volume:
 ```
@@ -2920,12 +2911,12 @@ spec:
 Notes:
   - Even if you will delete your PVC, data still will be on POD, until POD removed. Once POD removed and get status *released* - pvc is going to be removed completely. 
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img54.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img54.png)
 
 ### Applications with Persistent Storage
 In this lesson, we’ll wrap everything up in a nice little bow and create a deployment that will allow us to use our storage with our pods. This is to demonstrate how a real-world application would be deployed and used for storing data.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img55.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img55.png)
 
 In this lesson, we’ll wrap everything up in a nice little bow and create a deployment that will allow us to use our storage with our pods. This is to demonstrate how a real-world application would be deployed and used for storing data.
 
@@ -3037,7 +3028,7 @@ Connect to our pod and list the contents of the /data directory:
 kubectl exec -it [pod-name] -- ls /data
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img56.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img56.png)
 
 ### Creating Persistent Storage for Pods in Kubernetes
 **Create a PersistentVolume.**
@@ -3172,7 +3163,7 @@ QUIT
 ### Kubernetes Security Primitives
 Expanding on our discussion about securing the Kubernetes cluster, we’ll take a look at service accounts and user authentication. Also in this lesson, we will create a workstation for you to administer your cluster without logging in to the Kubernetes master server.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img57.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img57.png)
 
 List the service accounts in your cluster:
 ```
@@ -3273,12 +3264,12 @@ Run the same commands with kubectl:
 kubectl get nodes
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img58.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img58.png)
 
 ### Cluster Authentication and Authorization
 Once the API server has determined who you are (whether a pod or a user), the authorization is handled by RBAC. In this lesson, we will talk about roles, cluster roles, role bindings, and cluster role bindings.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img59.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img59.png)
 
 Create a new namespace:
 ```
@@ -3365,12 +3356,12 @@ Access PersistentVolumes (cluster-level) from the pod:
 curl localhost:8001/api/v1/persistentvolumes
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img60.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img60.png)
 
 ### Configuring Network Policies
 Network policies allow you to specify which pods can talk to other pods. This helps when securing communication between pods, allowing you to identify ingress and egress rules. You can apply a network policy to a pod by using pod or namespace selectors. You can even choose a CIDR block range to apply the network policy. In this lesson, we’ll go through each of these options for network policies.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img61.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img61.png)
 
 Download the canal plugin:
 ```
@@ -3488,12 +3479,12 @@ spec:
     - port: 5432
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img62.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img62.png)
 
 ### Creating TLS Certificates
 A Certificate Authority (CA) is used to generate TLS certificates and authenticate to your API server. In this lesson, we’ll go through certificate requests and generating a new certificate.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img63.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img63.png)
 
 Find the CA certificate on a pod in your cluster:
 ```
@@ -3586,12 +3577,12 @@ kubectl get csr pod-csr.web -o jsonpath='{.status.certificate}' \
     | base64 --decode > server.crt
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img64.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img64.png)
 
 ### Secure Images
 Working with secure images is imperative in Kubernetes, as it ensures your applications are running efficiently and protecting you from vulnerabilities. In this lesson, we’ll go through how to set Kubernetes to use a private registry.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img65.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img65.png)
 
 View where your Docker credentials are stored:
 ```
@@ -3669,12 +3660,12 @@ View the running pod:
 kubectl get pods
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img66.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img66.png)
 
 ### Defining Security Contexts
 Defining security contexts allows you to lock down your containers, so that only certain processes can do certain things. This ensures the stability of your containers and allows you to give control or take it away. In this lesson, we’ll go through how to set the security context at the container level and the pod level.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img67.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img67.png)
 
 Run an alpine container with default security:
 ```
@@ -3916,12 +3907,12 @@ Open a shell to the first container on that pod:
 kubectl exec -it group-context -c first sh
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img68.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img68.png)
 
 ### Securing Persistent Key Value Store
 Secrets are used to secure sensitive data you may access from your pod. The data never gets written to disk because it's stored in an in-memory filesystem (tmpfs). Because secrets can be created independently of pods, there is less risk of the secret being exposed during the pod lifecycle.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img69.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img69.png)
 
 View the secrets in your cluster:
 ```
@@ -4064,7 +4055,7 @@ Curl the web server to get a response:
 curl https://localhost:8443 -k
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img70.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img70.png)
 
 ### Creating a ClusterRole to Access a PV in Kubernetes
 **View the Persistent Volume.**
@@ -4123,7 +4114,7 @@ kubectl create clusterrolebinding pv-test --clusterrole=pv-reader --serviceaccou
 ### Monitoring the Cluster Components
 We are able to monitor the CPU and memory utilization of our pods and nodes by using the metrics server. In this lesson, we’ll install the metrics server and see how the kubectl top command works.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img71.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img71.png)
 
 Clone the metrics server repository:
 ```
@@ -4175,12 +4166,12 @@ Get the CPU and memory of the containers inside the pod:
 kubectl top pods group-context --containers
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img72.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img72.png)
 
 ### Monitoring the Applications Running within a Cluster
 There are ways Kubernetes can automatically monitor your apps for you and, furthermore, fix them by either restarting or preventing them from affecting the rest of your service. You can insert liveness probes and readiness probes to do just this for custom monitoring of your applications.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img73.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img73.png)
 
 The pod YAML for a liveness probe:
 ```
@@ -4272,12 +4263,12 @@ Get the list of endpoints to see that the repaired pod is part of the service ag
 kubectl get ep
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img74.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img74.png)
 
 ### Managing Cluster Component Logs
 There are many ways to manage the logs that can accumulate from both applications and system components. In this lesson, we’ll go through a few different approaches to organizing your logs.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img75.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img75.png)
 
 The directory where the container logs reside:
 ```
@@ -4381,12 +4372,12 @@ View the second type of logs separately:
 kubectl logs counter count-log-2
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img76.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img76.png)
 
 ### Managing Application Logs
 Containerized applications usually write their logs to standard out and standard error instead of writing their logs to files. Docker then redirects those streams to files. You can retrieve those files with the kubectl logs command in Kubernetes. In this lesson, we’ll go over the many ways to manipulate the output of your logs and redirect them to a file.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img77.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img77.png)
 
 Get the logs from a pod:
 ```
@@ -4438,7 +4429,7 @@ Redirect the output of the logs to a file:
 kubectl logs counter -c count-log-1 > count.log
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img78.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img78.png)
 
 ### Monitor and Output Logs to a File in Kubernetes
 
@@ -4464,7 +4455,7 @@ kubectl logs <pod_name> -n <namespace_name> > broken-pod.log
 ### Troubleshooting Application Failure
 Application failure can happen for many reasons, but there are ways within Kubernetes that make it a little easier to discover why. In this lesson, we’ll fix some broken pods and show common methods to troubleshoot.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img79.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img79.png)
 
 The YAML for a pod with a termination reason:
 ```
@@ -4519,12 +4510,12 @@ Edit a pod directly (i.e., changing the image):
 kubectl edit po nginx
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img80.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img80.png)
 
 ### Troubleshooting Control Plane Failure
 The Kubernetes Control Plane is an important component to back up and protect against failure. There are certain best practices you can take to ensure you don’t have a single point of failure. If your Control Plane components are not effectively communicating, there are a few things you can check to ensure your cluster is operating efficiently.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img81.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img81.png)
 
 Check the events in the **kube-system** namespace for errors:
 ```
@@ -4572,12 +4563,12 @@ Disable the firewall and stop the firewalld service:
 sudo systemctl disable firewalld && systemctl stop firewalld
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img82.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img82.png)
 
 ### Troubleshooting Worker Node Failure
 Troubleshooting worker node failure is a lot like troubleshooting a non-responsive server, in addition to the kubectl tools we have at our disposal. In this lesson, we’ll learn how to recover a node and add it back to the cluster and find out how to identify when the kublet service is down.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img83.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img83.png)
 
 Listing the status of the nodes should be the first step:
 ```
@@ -4624,12 +4615,12 @@ View the syslogs:
 sudo more syslog | tail -120 | grep kubelet
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img84.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img84.png)
 
 ### Troubleshooting Networking
 Network issues usually start to arise internally or when using a service. In this lesson, we’ll go through the many methods to see if your app is serving traffic by creating a service and testing the communication within the cluster.
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img85.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img85.png)
 
 Run a deployment using the container port 9376 and with three replicas:
 ```
@@ -4714,7 +4705,7 @@ Apply the Weave Net CNI plugin:
 kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 ```
 
-![img](https://github.com/Bes0n/CKA/blob/master/images/img86.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/cka/images/img86.png)
 
 ### Repairing Failed Pods in Kubernetes
 **Identify the broken pods.**
@@ -5068,20 +5059,22 @@ status:
 ```
 
 7. Use the following command to create the service:
+
 ```
 kubectl apply -f webfront-service.yaml
 ```
 
 8. Verify that you can communicate with your pod directly:
+
 ```
 kubectl run busybox --rm -it --image=busybox /bin/sh
-
 # wget -O- <pod_ip_address>:80
 # wget --spider --timeout=1 webfront-service
 ```
-
+  
 **Create a database server to serve as the backend database.**
 - Use the following command to create a Redis pod:
+
 ```
 kubectl run db-redis --image=redis --restart=Never
 ```
@@ -5101,11 +5094,13 @@ spec:
 ```
 
 2. Use the following command to apply the network policy:
+
 ```
 kubectl apply -f default-deny.yaml
 ```
 
 3. Verify that communication has been disabled by default:
+
 ```
 kubectl run busybox --rm -it --image=busybox /bin/sh
 # wget -O- ≤pod_ip_address>:80
@@ -5113,6 +5108,7 @@ kubectl run busybox --rm -it --image=busybox /bin/sh
 
 **Apply the labels and create a communication over port 6379 to the database server.**
 1. Use the following commands to apply the labels:
+
 ```
 kubectl get po
 kubectl label po <pod_name> role=frontend
