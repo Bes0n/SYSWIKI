@@ -5,10 +5,7 @@
 
 > Here you can find documentation related to
 
-- **LFCS** - Linux Foundation Certified System Administrator
-- **CKA** - Certified Kubernetes Administrator
-- **Terraform** - Using Terraform to Manage Applications and Infrastructure
-- **EX407** - Red Hat Certified Specialist in Ansible Automation
+- **LFCS** / **CKA** / **Terraform** / **EX407**
 
 <!-- [Preview](https://boopathikumar018.github.io/docsify-darklight-theme) -->
 [Getting Started](#content-list)
