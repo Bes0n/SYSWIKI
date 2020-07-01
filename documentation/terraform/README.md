@@ -32,7 +32,7 @@
     - [Building a Jenkins Pipeline Part 3](#building-a-jenkins-pipeline-part-3)
 - [Terraform and AWS](#terraform-and-aws)
     - [Setting Up a Cloud Sandbox](#setting-up-a-cloud-sandbox)
-    - [Our Architecture: What We're Going to Build](#our-architecture-what-were-going-to-build)
+    - [Our Architecture: What We're Going to Build](#our-architecture-what-we39re-going-to-build)
     - [Storage Part 1: The S3 Bucket and Random ID](#storage-part-1-the-s3-bucket-and-random-id)
     - [Storage Part 2: The Root Module](#storage-part-2-the-root-module)
     - [Networking Part 1: VPC, SG, Subnets](#networking-part-1-vpc-sg-subnets)
@@ -1169,8 +1169,8 @@ terraform destroy -auto-approve -var env=dev
 
 ## Terraform Modules
 ### Introduction to Modules
-![img](https://github.com/Bes0n/Using-Terraform-to-Manage-Applications-and-Infrastructure/blob/master/images/img1.png)
-  
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/terraform/images/img1.png)
+
 Set up the environment:
 ```
 mkdir -p modules/image
@@ -2376,14 +2376,14 @@ We will have several modules for each component of our architecture
   - Network Module
   - Compute Module
 
-![img](https://github.com/Bes0n/Using-Terraform-to-Manage-Applications-and-Infrastructure/blob/master/images/img2.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/terraform/images/img2.png)
   
 High-level diagram will be following:
 - Storage module is going to use S3 Bucket 
 - Network module will deploy internet gateway with public and private route tables
 - Two EC2 instances will be deployed and ssh keys generated for them. 
   
-![img](https://github.com/Bes0n/Using-Terraform-to-Manage-Applications-and-Infrastructure/blob/master/images/img3.png)
+![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/terraform/images/img3.png)
 
 ### Storage Part 1: The S3 Bucket and Random ID
 In this lesson, we will start working with AWS by creating a S3 Terraform module.
