@@ -5,7 +5,9 @@
 
 > Here you can find documentation related to
 
-- **LFCS** / **CKA** / **Terraform** / **EX407**
+- **LFCS** - **CKA** - **Terraform** - **EX407**
+
+Use it for exam preparation or as a hint book. 
 
 <!-- [Preview](https://boopathikumar018.github.io/docsify-darklight-theme) -->
 [Getting Started](#content-list)

@@ -83,7 +83,7 @@ This series of lessons lays the foundation for the remainder of the course conte
   - Configuration files
 
 ##### Inventories
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img1.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img1.png)
 
 - Inventory files may simply consist of a list of hostnames but can be much more robust
 
@@ -174,6 +174,7 @@ innaghiyev1c.mylabserver.com | SUCCESS => {
 The Ansible master configuration file is reviewed on a live system in this demonstration. Key configuration values are discussed as well as how to modify those values.
   
 - Let's see some default values of *ansible.cfg* file located by `/etc/ansible/ansible.cfg` directory
+
 ```
 [defaults]
 
@@ -197,6 +198,7 @@ The Ansible master configuration file is reviewed on a live system in this demon
 ```
   
 - Another handy block is following
+
 ```
 [privilege_escalation]
 #become=True
@@ -302,15 +304,15 @@ Learn how to use ad-hoc ansible commands for simple system managment. This lectu
 
 ##### Ad-hoc vs Playbook
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img2.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img2.png)
   
 ##### Common Modules
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img3.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img3.png)
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img4.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img4.png)
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img5.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img5.png)
 
 
 ### Demonstration: Ansible Ad-Hoc Commands Part 1
@@ -401,15 +403,15 @@ In Ansible, inventories are crucially important as they serve as the foundation 
 
 ##### File Formats 
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img6.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img6.png)
   
 ##### Static vs. Dynamic
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img7.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img7.png)
   
 ##### Variables and Inventories
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img8.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img8.png)
   
 ### Demo: Variables and Inventories
 Being able to work with inventories and variables is an essential skill for any user of Ansible. This command line demonstration will show students the best practices for using variables within inventories.
@@ -425,6 +427,7 @@ drwxrwxr-x. 2 cloud_user cloud_user  25 Feb 27 10:53 host_vars
   
 Where:
 - `inventory` - stores our hosts
+
 ```
 [cloud_user@innaghiyev2c inventory]$ cat inventory
 innaghiyev1c ansible_host=innaghiyev1c.mylabserver.com
@@ -435,6 +438,7 @@ innaghiyev1c.mylabserver.com
 ```
   
 - `group_vars` - contains group name of our hosts' group. `labservers` - name of group, which contains variables
+
 ```
 [cloud_user@innaghiyev2c inventory]$ ls -l group_vars/
 total 4
@@ -445,6 +449,7 @@ secure : /var/log/secure
 ```
   
 - `host_vars` - contains hostname with stored variable inside. `innaghiyev1c` - name of the host, which contains variables
+
 ```
 [cloud_user@innaghiyev2c inventory]$ ls host_vars/
 innaghiyev1c
@@ -473,11 +478,11 @@ all:
 ### Dynamic Inventories
 Being able to use dynamic inventories in essential skill for any Ansible specialist. This lecture goes over the details of how dynamic inventories in Ansible work.
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img9.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img9.png)
   
 Some Popular Options:
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img10.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img10.png)
 
 ### Demo: Dynamic Inventories
 - `chmod +x script.py` - script for dynamic inventory must be executable. Output of your script must be in **JSON** format
@@ -563,7 +568,7 @@ This less provides an overview of the section and reviews some of the common mod
 
 ### Create Playbooks to Configure Systems to a Specified State
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img11.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img11.png)
 
 ### Basic Playbook Syntax Demonstration
 Let's write some simple playbook. 
@@ -596,10 +601,11 @@ Let's write some simple playbook.
 
 ### Use Variables to Retrieve the Results of Running Commands
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img12.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img12.png)
 
 - by `register` we can get a lot of information regarding module. What has been changed, where etc
 - playbook with retriving output as a variable
+
 ```
 ---
 - hosts: labservers
@@ -616,15 +622,19 @@ Let's write some simple playbook.
         line: "{{output.uid}}"
 ```
 - As an output we will have following result
+
 ```
-    "msg": "Register output is {u'group': u'cloud_user', u'uid': 1004, u'dest': u'/tmp/newfile', u'changed': True, 'failed': False, u'state': u'file',  u'gid': 1005, u'secontext': u'unconfined_u:object_r:user_tmp_t:s0', u'mode': u'0664', u'owner': u'cloud_user', u'diff': {u'after': {u'path': u'/tmp/ newfile', u'state': u'touch', u'atime': 1583240962.247869, u'mtime': 1583240962.247869}, u'before': {u'path': u'/tmp/newfile', u'state': u'file',  u'atime': 1583240712.9548037, u'mtime': 1583240712.9548037}}, u'size': 5}"
+    "msg": "Register output is {u'group': u'cloud_user', u'uid': 1004, u'dest': u'/tmp/newfile', u'changed': True, 'failed': False, u'state': u'file',  u'gid': 1005, 
+    u'secontext': u'unconfined_u:object_r:user_tmp_t:s0', u'mode': u'0664', u'owner': u'cloud_user', u'diff': {u'after': {u'path': u'/tmp/ newfile', u'state': u'touch', 
+    u'atime': 1583240962.247869, u'mtime': 1583240962.247869}, u'before': {u'path': u'/tmp/newfile', u'state': u'file',  u'atime': 1583240712.9548037, u'mtime': 
+    1583240712.9548037}}, u'size': 5}"
 }
 ``` 
 - By `register` we're registering output in defined variable. In our case this is **output** variable. We can use this variable during playbook run. 
   
 ###  Use Conditionals to Control Play Execution Part 1
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img13.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img13.png)
   
 Playbook with handler:
   
@@ -654,7 +664,7 @@ Explanation for playbook:
 
 ### Use Conditionals to Control Play Execution Part 2
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img14.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img14.png)
 
 - **When** - if condition is true, it will execute. More similar to **if-else** condition 
 - **With_items** - will take each item in a list and loop through it
@@ -717,7 +727,7 @@ Demonstration of playbook:
 - We're going to `ignore errors` and even if playbook failed it's going to execute
 - Output will look like this:
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img15.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img15.png)
 
 ### Demo: Error Handling – Block Groups
 Block groups and rescues - like a try and catch.
@@ -740,7 +750,7 @@ Block groups and rescues - like a try and catch.
 - `always` - that part of block will run any time. No matter playbook run fails or not. 
   
 Here how rescue block is working:
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img16.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img16.png)
 
 ### Selectively Run Specific Tasks In Playbooks Using Tags
 How Ansible uses tags
@@ -874,6 +884,7 @@ Important notes:
 #### Learning Objectives
 ##### Create a playbook: `/home/ansible/report.yml`
 - `echo "---" >> /home/ansible/report.yml`
+
 ##### Configure the Playbook to Download *http://apps.l33t.com/transaction_list* to `/home/ansible/transaction_list` on `localhost` and Outputs the Message "File downloaded." to `stdout`
   
 Using a text editor, such as vim, edit `/home/ansible/report.yml` to contain the following text block below the line containing "---":
@@ -967,11 +978,11 @@ Template basics
   
 Template Module
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img17.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img17.png)
   
 Template File
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img18.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img18.png)
 
 
   
@@ -1033,11 +1044,11 @@ Overview:
   
 - Dictionary variables
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img19.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img19.png)
   
 - Magic Variables and Filters
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img20.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img20.png)
   
 ### Demo: Ansible Variables - Magic Variables and Jinja Filters
   
@@ -1123,12 +1134,12 @@ What are facts?
   
 How to use facts
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img21.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img21.png)
   
 
 Facts.d - custome facts
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img22.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img22.png)
     
   
 ### Demo: Working with Ansible Facts
@@ -1156,6 +1167,7 @@ innaghiyev2c.mylabserver.com | SUCCESS => {
 Custom facts set up:
 -  `sudo mkdir -p /etc/ansible/facts.d` - create `facts.d` directory
 - `sudo vim /etc/ansible/facts.d/prefs.fact` - create custom fact with `.fact` extension
+
 ```
 [cloud_user@innaghiyev2c playbook]$ sudo cat /etc/ansible/facts.d/prefs.fact
 [location]
@@ -1227,7 +1239,9 @@ Summary tasks list:
 ```
   
 ##### Create a Playbook in `/home/ansible/security.yml` That Uses the Template Module to Deploy the Template on All Servers in the Default Ansible Inventory After Validating the Syntax of the Generated File
+
 - Edit **/home/ansible/security.yml** to contain the following:
+
 ```
 ---
 - hosts: all
@@ -1249,10 +1263,10 @@ Check the local **/etc/sudoers.d/hardened** on the **ansible control** node for 
 ## Create and Work with Roles
 ### Working with Ansible Roles Lecture
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img23.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img23.png)
   
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img24.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img24.png)
 
 - **Tasks** - the tasks directory contains the main list of tasks to be executed by the role.
   - This directory must include a **main.yml** if that directroy is being used. You can think of main.yml as the entry point for the tasks section of the role. 
@@ -1291,6 +1305,7 @@ Best practice dictates that you properly namespace your variables when working w
 In this terminal-side demonstration, a new role is created and then applied to a target host.
   
 - `ansible-galaxy role init apache` - create an **apache** role with default structure by using *ansible-galaxy*
+
 ```
 [cloud_user@innaghiyev2c ~]$ ll /etc/ansible/roles/apache/
 total 4
@@ -1306,6 +1321,7 @@ drwxrwxr-x. 2 cloud_user cloud_user   21 Mar  9 08:27 vars
 ```
   
 - `vim /etc/ansible/roles/tasks/main.yml` - we're going to start from `tasks`
+
 ```
 ---
 # tasks file for apache
@@ -1326,6 +1342,7 @@ drwxrwxr-x. 2 cloud_user cloud_user   21 Mar  9 08:27 vars
 ```
   
 - `ls -l /etc/ansible/roles/apache/templates` - our templates for apache role stored in **templates** directory, no need to define full path for it
+
 ```
 [cloud_user@innaghiyev2c templates]$ ls -l
 total 12
@@ -1333,6 +1350,7 @@ total 12
 ```
   
 - `vim /etc/ansible/roles/apache/defaults/main.yml` - we're going to setup default attributes.
+
 ```
 ---
 # defaults file for apache
@@ -1340,6 +1358,7 @@ apache_server_admin: admin@example.com
 ```
   
 - `/etc/ansible/roles/apache/handlers/main.yml` - configuring handler 
+
 ```
 ---
 # handlers file for apache
@@ -1350,6 +1369,7 @@ apache_server_admin: admin@example.com
 ```
   
 - `/etc/ansible/roles/install.yml` - configure playbook to use **apache** role
+
 ```
 ---
 - hosts: labservers
@@ -1359,6 +1379,7 @@ apache_server_admin: admin@example.com
 ```
 
 - `ansible-playbook install.yml` - finally run your playbook and check for results.
+
 ```
 PLAY RECAP **********************************************************************************************************************************************************
 innaghiyev1c.mylabserver.com : ok=5    changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
@@ -1367,6 +1388,7 @@ innaghiyev3c.mylabserver.com : ok=5    changed=2    unreachable=0    failed=0   
 ```
 
 - `vim /etc/ansible/roles/install.yml` - let's change our default variable for **apache_server_admin**
+
 ```
 ---
 - hosts: labservers
@@ -1378,6 +1400,7 @@ innaghiyev3c.mylabserver.com : ok=5    changed=2    unreachable=0    failed=0   
 ```
 
 - `vim -R /etc/httpd/conf/httpd.conf` - as we can see new **ServerAdmin** value has been updated
+
 ```
 # ServerAdmin: Your address, where problems with the server should be
 # e-mailed.  This address appears on some server-generated pages, such
@@ -1417,18 +1440,16 @@ dependencies:
 - **Meta** directory:
   - The meta-directory defines certain meta data for the role.
   - Relevant meta data includes role dependecies and vairous role level configurations such as *allow_duplicates*.
-
-   The meta-directroy is entered via a *main.yml*
+  - The meta-directroy is entered via a *main.yml*
 
 - **Nesting**:
   - Roles my include other roles using the dependecies keyword.
   - Dependent roles are applied prior to the role dependent on them
   - A role using the same parameters will not be applied more than one time. This can cause complication with role dependencies
   - Having `allow_duplicates: true` defined in **meta/main.yml** within a role will allow the role to be applied more than once. 
-  
-  
-- `ansible-galaxy init php-webserver` - let's generate **php-webserver** role. That roles is going to use **apache** role as a dependency role.
-- `sudo vim /etc/ansible/roles/php-webserver/tasks/main.yml` - write tasks for a php-webserver role
+  - `ansible-galaxy init php-webserver` - let's generate **php-webserver** role. That roles is going to use **apache** role as a dependency role.
+  - `sudo vim /etc/ansible/roles/php-webserver/tasks/main.yml` - write tasks for a php-webserver role
+
 ```
 ---
 # tasks file for php-webserver
@@ -1444,6 +1465,7 @@ dependencies:
 ```
 
 - `sudo vim /etc/ansible/roles/php-webserver/meta/main.yml` - configure dependency from **meta** directory. We only need **dependencies** block here
+
 ```
 dependencies:
   # List your role dependencies here, one per line. Be sure to remove the '[]' above,
@@ -1452,6 +1474,7 @@ dependencies:
 ```
 
 - `sudo vim /etc/ansible/roles/install.yml` - our cookbook will look like this
+
 ```
 ---
 - hosts: labservers
@@ -1460,7 +1483,8 @@ dependencies:
     - php-webserver
 ```
   
-From output it can be seen that dependency **apache** role run **first** and then our **php-webserver** role.  
+From output it can be seen that dependency **apache** role run **first** and then our **php-webserver** role.
+
 ```
 PLAY [labservers] ********************************************************************************************************************************************
 TASK [Gathering Facts] ********************************************************************************************************************************************
@@ -1526,6 +1550,7 @@ Run the following commands to create the structure needed for the role:
 ##### Configure the Role to Deploy the /etc/motd Template
 - `cp /home/ansible/resources/motd.j2 /etc/ansible/roles/baseline/templates`
 - Create a file called `/etc/ansible/roles/baseline/tasks/deploy_motd.yml` with the following content:
+
 ```
 ---
 - template:
@@ -1534,6 +1559,7 @@ Run the following commands to create the structure needed for the role:
 ```
   
 - Edit `/etc/ansible/roles/baseline/tasks/main.yml` to include the following lines at the bottom of the file:
+
 ```
 - name: configure motd
   import_tasks: deploy_motd.yml
@@ -1541,12 +1567,14 @@ Run the following commands to create the structure needed for the role:
   
 ##### Configure the Role to Install the Latest Nagios Client
 - Create a file called `/etc/ansible/roles/baseline/tasks/deploy_nagios.yml` with the following content:
+
 ```
 ---
 - yum: name=nrpe state=latest
 ```
   
 - Edit `/etc/ansible/roles/baseline/tasks/main.yml` to include the following lines at the bottom of the file (take care with the formatting.):
+
 ```
 - name: deploy nagios client
   import_tasks: deploy_nagios.yml
@@ -1554,6 +1582,7 @@ Run the following commands to create the structure needed for the role:
 
 ##### Configure the Role to Add an Entry to /etc/hosts for the Nagios Server
 - Create a file called `/etc/ansible/roles/baseline/tasks/edit_hosts.yml` with the following content, substituting <PROVIDED> with the IP specified in `/home/ansible/resources/nagios_info.txt`:
+
 ```
 ---
 - lineinfile:
@@ -1569,8 +1598,8 @@ Run the following commands to create the structure needed for the role:
 
 ##### Configure the Role to Create the noc User and Deploy the Provided Public Key for the noc User on Target Systems
 - Copy the file `/home/ansible/resources/authorized_keys*` to `*/etc/ansible/roles/baseline/files/`.
-
 - Create a file called `/etc/ansible/roles/baseline/tasks/deploy_noc_user.yml` with the following content:
+
 ```
 ---
 - user: name=noc
@@ -1589,6 +1618,7 @@ Run the following commands to create the structure needed for the role:
 ```
 
 - Edit `/etc/ansible/roles/baseline/tasks/main.yml` to include the following lines at the bottom of the file:
+
 ```
       - name: set up noc user and key
         import_tasks: deploy_noc_user.yml
@@ -1596,6 +1626,7 @@ Run the following commands to create the structure needed for the role:
 
 ##### Edit web.yml to Deploy the baseline Role
 Edit `/home/ansible/resources/web.yml` to the following:
+
 ```
 ---
 - hosts: webservers
@@ -1630,6 +1661,7 @@ Ansible Galaxy - galaxy.ansible.com or github.com:
 - The **-p** flag allows specification of local role location (`ansible-galaxy` uses `/etc/ansible/roles` by default)
   
 - `ansible-galaxy init mysql` - initiate mysql named role with required structure inside
+
 ```
 [cloud_user@innaghiyev2c ~]$ ansible-galaxy init mysql
 - Role mysql was created successfully
@@ -1647,6 +1679,7 @@ drwxrwxr-x. 2 cloud_user cloud_user   21 Mar 10 09:29 vars
 ```
 
 - `ansible-galaxy search elasticsearch` - search for an **elasticsearch** role on ansible-galaxy
+
 ```
 Found 487 roles matching your search:
 
@@ -1671,6 +1704,7 @@ Found 487 roles matching your search:
 - `ansible-galaxy install elastic.elasticsearch` - install elasticsearch role from ansible-galaxy
 
 - let's create simple playbook which will install role for us:
+
 ```
 ---
 - hosts: localhost
@@ -1700,6 +1734,7 @@ For number:
   - you can increase your fork number up to 10 or 15 without risk
 
 - `serial` - used to speficy on how many hosts playbook will be executed simultaneously
+
 ```
 ---
 - hosts: labservers
@@ -1716,6 +1751,7 @@ For number:
 ```
   
 - From run it can be seen that playbook first run on **one** host, then **two** and finally the rest
+
 ```
 [cloud_user@innaghiyev2c ~]$ ansible-playbook serial.yml 
 
@@ -1765,6 +1801,7 @@ innaghiyev3c.mylabserver.com : ok=2    changed=1    unreachable=0    failed=0   
 As a demonstration let's create simple text file:
 - `echo "Super secret word stored here" > secret.txt`
 - `ansible-vault encrypt secret.txt` - simply encrypt our file
+
 ```
 [cloud_user@innaghiyev2c ~]$ ansible-vault encrypt secret.txt
 New Vault password: <your vault password here>
@@ -1773,6 +1810,7 @@ Encryption successful
 ```
   
 - `[cloud_user@innaghiyev2c ~]$ cat secret.txt` - as an output we have this now
+
 ```
 $ANSIBLE_VAULT;1.1;AES256
 38643439333433636239326461326234386361306331366666636534623065343237393662363538
@@ -1786,6 +1824,7 @@ $ANSIBLE_VAULT;1.1;AES256
 - `ansible-vault decrypt secret.txt` - decrypt your file
 - `ansible-vault encrypt_string 'The answer is 42' -n meaning` - you can encrypt pieces of your playbook, rather all files
 - `ansible-vault encrypt_string 'The answer is 42' -n meaning --vault-id dev@prompt` - provide vault-id with a label `dev`
+
 ```
 [cloud_user@innaghiyev2c ~]$ ansible-vault encrypt_string 'The answer is 42' -n meaning --vault-id dev@prompt
 New vault password (dev): 
@@ -1802,6 +1841,7 @@ Encryption successful
 
 ### Using Vaults in Playbooks
 - We have following a playbook for testing:
+
 ```
 ---
 - hosts: localhost
@@ -1847,11 +1887,13 @@ ERROR! Attempting to decrypt but no vault secrets found
 ```
 
 - If we run playbook with `-v` - verbose key. We will see content of the encrypted file
+
 ```
 changed: [localhost] => {"changed": true, "cmd": "echo I am a walrus"
 ```
 
 - That can be prevented by using simple `no_log: True` string. 
+
 ```
 ---
 - hosts: localhost
@@ -1864,6 +1906,7 @@ changed: [localhost] => {"changed": true, "cmd": "echo I am a walrus"
 ```
 
 - Now output of the playbook will look like that:
+
 ```
 TASK [Output message] **********************************************************************************
 changed: [localhost] => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result", "changed": true}
@@ -1889,12 +1932,15 @@ Summary tasks list:
 ##### Encrypt `/home/ansible/secret` using the `ansible-vault` command.
 - Run `ansible-vault encrypt /home/ansible/secret` and provide a simple password of your choosing.
 - Be sure to remember the password!
+
 ##### Create */home/ansible/vault* as a vault password file that may be used to access the encrypted secret file without prompt.
 - Run the command `echo "<Your_Vault_Password>" > /home/ansible/vault`.
 - Substitute <<Your_Vault_Password>Your_Vault_Password> with the password you chose in the previous task.
+
 ##### Run the playbook */home/ansible/secPage.yml* using your *vault* password file to validate your work.
 - Run the command `ansible-playbook --vault-password-file /home/ansible/vault /home/ansible/secPage.yml`.
 - If your encryption was configured correctly, you should get no errors.
+
 ##### Verify that the secure page deployed correctly by attempting to access http://node1/secure/classified.html as the user *bond* with the password *james*.
 - Run `curl -u bond http://node1/secure/classified.html` and supply the password **james** when prompted.
 - The command should return the contents of **classified.html** regarding the weather in a certain city.
@@ -1913,6 +1959,7 @@ Steps to install ansible Tower:
 - Download an un-tar your archive
 - Get a free license (maximum 10 hosts)
 - Read manual in **README.md** in your main directory that you just unarchived
+
 ```
 Ansible Tower Deployment
 ========================
@@ -1951,6 +1998,7 @@ Tower can be installed in 3 different modes:
 ```
   
 - Next one is ansible tower **inventory** file:
+
 ```
 [tower]
 localhost ansible_connection=local
@@ -2000,22 +2048,22 @@ rabbitmq_cookie=cookiemonster
 
 - some of the basic configuration stored in `/etc/tower/settings.py`
   
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img25.png)
-     
-
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img25.png)
+  
 ### Demo: Working with Ansible Tower
 - You can create a new project and select SCM type (Manual, Git, Mercirial etc)
 - **Inventories** - in this tab we can manage our invetory files, editing and adding new hosts inside of inventory files. 
   - groups can be added inside of inventories tab
   - ad-hoc commands can be executed from hosts tab
 - **Credential** - from this tab you can manage your users, access type, import your private key, prompt for password/passphrase and so on
-- **Execute ad-hoc command** 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img26.png)
+- **Execute ad-hoc command**
+
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img26.png)
   
 - **Templates** - the same as in ansible playbook 
 - **Jobs** - you can see the status of your jobs from this tab
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img27.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img27.png)
 
 
 ## Use Documentation to Look Up Specific Information About Ansible Modules and Commands
@@ -2026,6 +2074,7 @@ Two main ways to find documentation:
 
 - `ansible-doc` - by using this command we can search for any ansible module documentation
   - `ansible-doc lineinfile` - get help about `lineinfile` module
+
 ```
 > LINEINFILE    (/usr/lib/python2.7/site-packages/ansible/modules/files/lineinfile.py)
 
@@ -2080,6 +2129,7 @@ OPTIONS (= is mandatory):
 ```
   
 - `ansible-doc replace` - another example with `replace` module
+
 ```
 # Prior to Ansible 2.7.10, using before and after in combination did the opposite of what was intended.
 # see https://github.com/ansible/ansible/issues/31354 for details.
@@ -2129,6 +2179,7 @@ OPTIONS (= is mandatory):
 ```
 
 - `ansible-doc -s htpasswd` - with **-s** key we will get more consolidated view. 
+
 ```
 - name: manage user files for basic authentication
   htpasswd:
@@ -2165,7 +2216,6 @@ OPTIONS (= is mandatory):
 
 - Do not hesitate to use http://docs.ansible.com. Very similar to `ansible-doc` but nicer with all information about modules. In http view
   
-  
 ## Ansible 2.7 Exam Update
 ### Install and Configure Control Node and Ansible Nodes
 The new exam now mentions, as an objective, needing to know how to install and configure an Ansible control node:
@@ -2198,7 +2248,7 @@ Why shell scripts?
 - People not skilled in Ansible can create and use them
 - There is no need to know yam and .yml formatiing
 
-![img](https://github.com/Bes0n/EX407-Ansible-Automation/blob/master/images/img28.png)
+![img](https://raw.githubusercontent.com/Bes0n/EX407-Ansible-Automation/master/images/img28.png)
   
 
 ### Firewall Rules
@@ -2209,6 +2259,7 @@ Ansible and Firewall Rules
 - **iptables** module - https://docs.ansible.com/ansible/latest/modules/iptables_module.html
   
 - Playbook for installation and enabling firewalld:
+
 ```
 ---
 - hosts: labservers
@@ -2227,6 +2278,7 @@ Ansible and Firewall Rules
 ```
 
 - Second playbook will install **elinks** and **httpd** on your nodes
+
 ```
 ---
 - hosts: labservers
@@ -2246,6 +2298,7 @@ Ansible and Firewall Rules
 - `elinks http://client` - but it's not accessible from outside
 
 - Let's create playbook to change this firewall rule:
+
 ```
 ---
 - hosts: labservers 
@@ -2278,7 +2331,9 @@ The Unarchive module
 - if a **checksum** is required, the use **get_url** or **uri** instead
 - By default it will copy from the source file to the target before unpacking
   
-- Let's create some backup-logs playbook. Which will archive directory for us and fetch it by hostnames. 
+
+Let's create some backup-logs playbook. Which will archive directory for us and fetch it by hostnames. 
+
 ```
 ---
 - hosts: all
@@ -2317,7 +2372,8 @@ The Cron Module - Extra Parameters
 - You can add a specific user if you need to set a **crontab** entry for a user (need to become **root**)
 - Use `insertafter` or `insertbefore` to add env entry before or after another **env** entry
   
-- Let's create some cron playbook, which will run command to check space at 5am and 5pm
+Let's create some cron playbook, which will run command to check space at 5am and 5pm
+
 ```
 ---
 - hosts: all
@@ -2365,8 +2421,9 @@ The Cron Module - Extra Parameters
 - It may not be on all systems, so verify its installation 
 - On Red Hat or CentOS systems it is installed with a `yum install at` command
 - The service is controlled via the `atd` daemon
+  
+Cookbook for installing and enabling `at`
 
-- Cookbook for installing and enabling `at`
 ```
 ---
 - hosts: all
@@ -2385,6 +2442,7 @@ The Cron Module - Extra Parameters
 ```
   
 - Scheduling a task with `at` module
+
 ```
 ---
 - hosts: all
@@ -2417,7 +2475,6 @@ Some Ansible Modules for Security
 - **selinux** - Configures the SELinux mode and policy
 - **firewalld** and **iptables**- Both manage firewall policies
 - **pamd** - Manages PAM modules
-  
 - Capable of working with **Datadog**, **Nagios** and other monitoring tools.
 - Manage users and groups (bulk add and delete users if you don't have SSO ability)
 - Can manage certificates such as OpenSSL or SSH
@@ -2425,6 +2482,7 @@ Some Ansible Modules for Security
 Let's us consider some examples. 
 - `ansible all -a /usr/bin/uptime` - check uptime of our nodes
 - We're going to create a playbook to check SELinux status
+
 ```
 ---
 - hosts: all
@@ -2439,6 +2497,7 @@ Let's us consider some examples.
 ```
   
 - Let's add some user that expires and is a member of a group
+
 ```
 ---
 - hosts: all
@@ -2455,11 +2514,14 @@ Let's us consider some examples.
 - `sudo useradd tempuser` - create a user
 - `sudo passwd tempuser` - set a password for a user
 - `sudo grep tempuser /etc/shadow` - get password hash
+
 ```
 tempuser:$6$U/WVBoCW$UX62EjlZLVucylus7N8NZ4/WV2o6kDFIMwaPAjNukwnVxYrF3tZhOCnJwnIXwxseRVrxybneDrYJuTXQ0hpAS0:18349:0:99999:7:::
 ```
+
 - go to https://www.epochconverter.com/ to get epoch timestamp. Set your expire date there
 - our cookbook will look like that
+
 ```
 ---
 - hosts: all
@@ -2479,6 +2541,7 @@ tempuser:$6$U/WVBoCW$UX62EjlZLVucylus7N8NZ4/WV2o6kDFIMwaPAjNukwnVxYrF3tZhOCnJwnI
 ```
 - `tail /etc/passwd` - we can see that **james20** user has been created
 - `chage -l james20` - to see when account expires
+
 ```
 Last password change                                    : Mar 28, 2020
 Password expires                                        : never
