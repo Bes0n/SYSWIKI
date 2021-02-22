@@ -636,8 +636,6 @@ Let's ping google.com
 
 - ```dig``` - verify dns related issues. If command not found install **bind-utils**
 - ```dig google.com``` - let's check for google.com dns name
-
-
 ```
 ; <<>> DiG 9.9.4-RedHat-9.9.4-74.el7_6.2 <<>> google.com
 ;; global options: +cmd
