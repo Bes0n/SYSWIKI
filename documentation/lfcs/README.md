@@ -657,6 +657,7 @@ google.com.             135     IN      A       172.217.19.110
 ;; WHEN: Mon Aug 05 14:30:24 CEST 2019
 ;; MSG SIZE  rcvd: 55
 ```
+
 *Where IN means an Internet, A means an Answer.* 
 
 - ``` dig nosuchdomainindig.com ``` - search for non-existing domain
