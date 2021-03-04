@@ -1,118 +1,118 @@
 # Using Terraform to Manage Applications and Infrastructure
-  
+
 
 - [About Terraform](#about-terraform)
 - [Setting Up Your Environment](#setting-up-your-environment)
-    - [Using Cloud Playground](#using-cloud-playground)
-    - [Setting up Docker Installing Terraform](#setting-up-docker-installing-terraform)
+- [Using Cloud Playground](#using-cloud-playground)
+- [Setting up Docker Installing Terraform](#setting-up-docker-installing-terraform)
 - [Terraform Basics](#terraform-basics)
-    - [Terraform Commands](#terraform-commands)
-    - [HashiCorp Configuration Language](#hashicorp-configuration-language)
-    - [Terraform Console and Output](#terraform-console-and-output)
-    - [Input Variables](#input-variables)
-    - [Breaking Out Our Variables and Outputs](#breaking-out-our-variables-and-outputs)  
-    - [Maps and Lookups](#maps-and-lookups)
-    - [Terraform Workspaces](#terraform-workspaces)
+- [Terraform Commands](#terraform-commands)
+- [HashiCorp Configuration Language](#hashicorp-configuration-language)
+- [Terraform Console and Output](#terraform-console-and-output)
+- [Input Variables](#input-variables)
+- [Breaking Out Our Variables and Outputs](#breaking-out-our-variables-and-outputs)
+- [Maps and Lookups](#maps-and-lookups)
+- [Terraform Workspaces](#terraform-workspaces)
 - [Terraform Modules](#terraform-modules)
-    - [Introduction to Modules](#introduction-to-modules)
-    - [The Image Module](#the-image-module)
-    - [The Container Module](#the-container-module)
-    - [The Root Module](#the-root-module)
-- [Terraform and Docker](#terraform-and-docker)  
-    - [Managing Docker Networks](#managing-docker-networks)
-    - [Managing Docker Volumes](#managing-docker-volumes)
-    - [Creating Swarm Services](#creating-swarm-services)
-    - [Using Secrets](#using-secrets)
+- [Introduction to Modules](#introduction-to-modules)
+- [The Image Module](#the-image-module)
+- [The Container Module](#the-container-module)
+- [The Root Module](#the-root-module)
+- [Terraform and Docker](#terraform-and-docker)
+- [Managing Docker Networks](#managing-docker-networks)
+- [Managing Docker Volumes](#managing-docker-volumes)
+- [Creating Swarm Services](#creating-swarm-services)
+- [Using Secrets](#using-secrets)
 - [Using Terraform in a CI/CD Environment](#using-terraform-in-a-cicd-environment)
-    - [Building a Custom Jenkins Image](#building-a-custom-jenkins-image)
-    - [Setting Up Jenkins](#setting-up-jenkins)
-    - [Creating a Jenkins Job](#creating-a-jenkins-job)
-    - [Building a Jenkins Pipeline Part 1](#building-a-jenkins-pipeline-part-1)
-    - [Building a Jenkins Pipeline Part 2](#building-a-jenkins-pipeline-part-2)
-    - [Building a Jenkins Pipeline Part 3](#building-a-jenkins-pipeline-part-3)
+- [Building a Custom Jenkins Image](#building-a-custom-jenkins-image)
+- [Setting Up Jenkins](#setting-up-jenkins)
+- [Creating a Jenkins Job](#creating-a-jenkins-job)
+- [Building a Jenkins Pipeline Part 1](#building-a-jenkins-pipeline-part-1)
+- [Building a Jenkins Pipeline Part 2](#building-a-jenkins-pipeline-part-2)
+- [Building a Jenkins Pipeline Part 3](#building-a-jenkins-pipeline-part-3)
 - [Terraform and AWS](#terraform-and-aws)
-    - [Setting Up a Cloud Sandbox](#setting-up-a-cloud-sandbox)
-    - [Our Architecture: What We're Going to Build](#our-architecture-what-we39re-going-to-build)
-    - [Storage Part 1: The S3 Bucket and Random ID](#storage-part-1-the-s3-bucket-and-random-id)
-    - [Storage Part 2: The Root Module](#storage-part-2-the-root-module)
-    - [Networking Part 1: VPC, SG, Subnets](#networking-part-1-vpc-sg-subnets)
-    - [Networking Part 2: The Root Module](#networking-part-2-the-root-module)
-    - [Compute Part 1: AMI Data, Key Pair, and the File Function](#compute-part-1-ami-data-key-pair-and-the-file-function)
-    - [Compute Part 2: The EC2 Instance](#compute-part-2-the-ec2-instance)
-    - [Compute Part 3: The Root Module](#compute-part-3-the-root-module)
+- [Setting Up a Cloud Sandbox](#setting-up-a-cloud-sandbox)
+- [Our Architecture: What We're Going to Build](#our-architecture-what-we39re-going-to-build)
+- [Storage Part 1: The S3 Bucket and Random ID](#storage-part-1-the-s3-bucket-and-random-id)
+- [Storage Part 2: The Root Module](#storage-part-2-the-root-module)
+- [Networking Part 1: VPC, SG, Subnets](#networking-part-1-vpc-sg-subnets)
+- [Networking Part 2: The Root Module](#networking-part-2-the-root-module)
+- [Compute Part 1: AMI Data, Key Pair, and the File Function](#compute-part-1-ami-data-key-pair-and-the-file-function)
+- [Compute Part 2: The EC2 Instance](#compute-part-2-the-ec2-instance)
+- [Compute Part 3: The Root Module](#compute-part-3-the-root-module)
 - [Troubleshooting](#troubleshooting)
-    - [Troubleshooting Terraform Files](#troubleshooting-terraform-files)
+- [Troubleshooting Terraform Files](#troubleshooting-terraform-files)
 - [Terraform State](#terraform-state)
-    - [Terraform Formatting and Remote State](#terraform-formatting-and-remote-state)
-    - [Using Remote State with Jenkins](#using-remote-state-with-jenkins)
+- [Terraform Formatting and Remote State](#terraform-formatting-and-remote-state)
+- [Using Remote State with Jenkins](#using-remote-state-with-jenkins)
 - [Terraform and Kubernetes](#terraform-and-kubernetes)
-    - [Setting up Kubernetes Installing Terraform](#setting-up-kubernetes-installing-terraform)
-    - [Creating a Pod](#creating-a-pod)
-    - [Creating a Pod and Service](#creating-a-pod-and-service)
-    - [Creating a Deployment](#creating-a-deployment)
+- [Setting up Kubernetes Installing Terraform](#setting-up-kubernetes-installing-terraform)
+- [Creating a Pod](#creating-a-pod)
+- [Creating a Pod and Service](#creating-a-pod-and-service)
+- [Creating a Deployment](#creating-a-deployment)
 - [Terraform 0.12](#terraform-012)
-    - [Setup and Disclaimer](#setup-and-disclaimer)
-    - [Working with Resources](#working-with-resources)
-    - [Input Variables](#input-variables)
-    - [Output Variables](#output-variables)
-    - [Dynamic Nested Blocks Part 1](#dynamic-nested-blocks-part-1)
-    - [Dynamic Nested Blocks Part 2](#dynamic-nested-blocks-part-2)
-    - [Expressions and Functions](#expressions-and-functions)
+- [Setup and Disclaimer](#setup-and-disclaimer)
+- [Working with Resources](#working-with-resources)
+- [Input Variables](#input-variables)
+- [Output Variables](#output-variables)
+- [Dynamic Nested Blocks Part 1](#dynamic-nested-blocks-part-1)
+- [Dynamic Nested Blocks Part 2](#dynamic-nested-blocks-part-2)
+- [Expressions and Functions](#expressions-and-functions)
 
 ## About Terraform
 - Terraform is a tool for building infrastructure
-    - Allows simple version control
-    - Available as open-source or enterprise software
-        - Enterprise provides advanced collaboration and governance. 
-    - Supports many popular service providers such as
-        - AWS
-        - OpenStack
-        - Azure
-        - GCP
-        - Kubernetes
-  
+- Allows simple version control
+- Available as open-source or enterprise software
+- Enterprise provides advanced collaboration and governance. 
+- Supports many popular service providers such as
+- AWS
+- OpenStack
+- Azure
+- GCP
+- Kubernetes
+
 - Primary Terraform Features:
-    - Infrastructure as Code (IaC)
-        - Idempotent
-        - High-level syntax
-        - Easily reusable
-    - Execution Plans
-        - Show the intent of the deploy
-        - Can help ensure everything in the development is intentional
-    - Resource graph
-        - Illustrates all changes and dependencies
-  
+- Infrastructure as Code (IaC)
+- Idempotent
+- High-level syntax
+- Easily reusable
+- Execution Plans
+- Show the intent of the deploy
+- Can help ensure everything in the development is intentional
+- Resource graph
+- Illustrates all changes and dependencies
+
 - Some use cases for Terraform:
-    - Hybrid clouds
-        - Cloud-agnostic
-        - Allows deployments to multiple providers simultaneously
-    - Multi-tier architecture
-        - Allows deployment of several layers of architecture
-        - Is usually able to automatically deploy in the correct order
-    - Software-defined networking
-        - Able to deploy network architecture as well
-  
+- Hybrid clouds
+- Cloud-agnostic
+- Allows deployments to multiple providers simultaneously
+- Multi-tier architecture
+- Allows deployment of several layers of architecture
+- Is usually able to automatically deploy in the correct order
+- Software-defined networking
+- Able to deploy network architecture as well
+
 - Terraform is a high-level infrastructure
-    - Puppet, Chef, and other configuration management tools
-        - Not intended for configuration management
-        - Provides "provisioners" that can call these tools to perform the CM duties 
-    - CloudFormation ant other IaC tools:
-        - Many other tools are vendor-locked and only support one vendor. 
-        - There are some tools that are similar to Terraform 
-    - Boto and other lower-level tools
-        - Terraform is a higher-level tool that tools such as Boto, which makes defining infrastructure easier. 
+- Puppet, Chef, and other configuration management tools
+- Not intended for configuration management
+- Provides "provisioners" that can call these tools to perform the CM duties 
+- CloudFormation ant other IaC tools:
+- Many other tools are vendor-locked and only support one vendor. 
+- There are some tools that are similar to Terraform 
+- Boto and other lower-level tools
+- Terraform is a higher-level tool that tools such as Boto, which makes defining infrastructure easier. 
 
 ## Setting Up Your Environment
 ### Using Cloud Playground
 In this video, we will create two Docker servers using Cloud Playground. These servers will be used to set up a Docker Swarm cluster.
-  
+
 We'll create two Cloud Servers from Cloud Playground, using the information below:
-  
+
 **Swarm Manager:**
 Distribution: CentOS 7
 Size: Medium
 Tag: Docker Swarm Manager
-  
+
 **Swarm Worker:**
 Distribution: CentOS 7
 Size: Medium
@@ -120,7 +120,7 @@ Tag: Docker Swarm Worker
 
 ### Setting up Docker Installing Terraform
 In this lesson, we will create a Docker Swarm cluster and install Terraform. We will start by installing Docker on both cloud servers, and then configure them to run in Swarm mode. After that we will install Terraform 0.11.13.
-  
+
 #### Installing Docker on the Swarm Manager and Worker
 These actions will be executed on both the Swarm manager and worker nodes.
 
@@ -133,45 +133,45 @@ sudo yum update -y
 Uninstall old versions:
 ```
 sudo yum remove -y docker \
-                  docker-client \
-                  docker-client-latest \
-                  docker-common \
-                  docker-latest \
-                  docker-latest-logrotate \
-                  docker-logrotate \
-                  docker-engine
+docker-client \
+docker-client-latest \
+docker-common \
+docker-latest \
+docker-latest-logrotate \
+docker-logrotate \
+docker-engine
 ```
 
 #### Install Docker CE
 Install Utils:
 ```
 sudo yum install -y yum-utils \
-  device-mapper-persistent-data \
-  lvm2
+device-mapper-persistent-data \
+lvm2
 ```
-  
+
 Add the Docker repository:
 ```
 sudo yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
+--add-repo \
+https://download.docker.com/linux/centos/docker-ce.repo
 ```
-  
+
 Install Docker CE:
 ```
 sudo yum -y install docker-ce
 ```
-  
+
 Start Docker and enable it:
 ```
 sudo systemctl start docker && sudo systemctl enable docker
 ```
-  
+
 Add `cloud_user` to the `docker` group:
 ```
 sudo usermod -aG docker cloud_user
 ```
-  
+
 Test the Docker installation:
 ```
 docker --version
@@ -204,7 +204,7 @@ sudo curl -O https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_
 sudo yum install -y unzip
 sudo unzip terraform_0.11.13_linux_amd64.zip -d /usr/local/bin/
 ```
-  
+
 Test the Terraform installation:
 ```
 terraform version
@@ -213,12 +213,12 @@ terraform version
 ## Terraform Basics
 ### Terraform Commands
 In this lesson, we begin working with Terraform commands. We will start by creating a very simple Terraform file that will pull down the an image from Docker Hub.
-  
+
 List the Terraform commands:
 ```
 terraform
 ```
-  
+
 **Common commands:**
 - `apply`: Builds or changes infrastructure
 - `console`: Interactive console for Terraform interpolations
@@ -239,36 +239,36 @@ terraform
 - `validate`: Validates the Terraform files
 - `version`: Prints the Terraform version
 - `workspace`: Workspace management
-  
+
 Set up the environment:
 ```
 mkdir -p terraform/basics
 cd terraform/basics
 ```
-  
+
 Create a Terraform script:
 ```
 vi main.tf
 ```
-  
+
 `main.tf` contents:
 ```
 # Download the latest Ghost image
 resource "docker_image" "image_id" {
-  name = "ghost:latest"
+name = "ghost:latest"
 }
 ```
-  
+
 Initialize Terraform:
 ```
 terraform init
 ```
-  
+
 Validate the Terraform file:
 ```
 terraform validate
 ```
-  
+
 List providers in the folder:
 ```
 ls .terraform/plugins/linux_amd64/
@@ -278,67 +278,67 @@ List providers used in the configuration:
 ```
 terraform providers
 ```
-  
+
 Terraform Plan:
 ```
 terraform plan
 ```
-  
+
 Useful flags for plan:
 - `-out=path`: Writes a plan file to the given path. This can be used as input to the "apply" command.
 - `-var 'foo=bar'`: Set a variable in the Terraform configuration. This flag can be set multiple times.
-  
+
 Terraform Apply:
 ```
 terraform apply
 ```
-  
+
 Useful flags for `apply`:
 - `-auto-approve`: This skips interactive approval of plan before applying.
 - `-var 'foo=bar'`: This sets a variable in the Terraform configuration. It can be set multiple times.
-  
+
 Confirm your apply by typing **yes**. The apply will take a bit to complete.
-  
+
 List the Docker images:
 ```
 docker image ls
 ```
-  
+
 Terraform Show:
 ```
 terraform show
 ```
-  
+
 Terraform Destroy:
 ```
 terraform destroy
 ```
-  
+
 Confirm your `destroy` by typing **yes**.
-  
+
 Useful flags for destroys:
 - `-auto-approve`: Skip interactive approval of plan before applying.
-  
+
 Re-list the Docker images:
 ```
 docker image ls
 ```
-  
+
 Using a plan:
 ```
 terraform plan -out=tfplan
 ```
-  
+
 Applying a plan:
 ```
 terraform apply tfplan
 ```
-  
+
 Show the Docker Image resource:
 ```
 terraform show
 ```
-  
+
 Destroy the resource once again:
 ```
 terraform destroy
@@ -346,7 +346,7 @@ terraform destroy
 
 ### HashiCorp Configuration Language
 In this lesson, we will cover the basics of the Terraform configuration language, as well as explore providers and resources. Continuing what we started in Terraform Commands, we will modify `main.tf` so we can deploy a Ghost container to Docker.
-  
+
 The syntax of Terraform configurations is called HashiCorp Configuration Language (HCL). It is meant to strike a balance between being human-readable and editable, and being machine-friendly. For machine-friendliness, Terraform can also read JSON configurations. For general Terraform configurations, however, we recommend using the HCL Terraform syntax.
 
 #### Terraform code files
@@ -356,11 +356,11 @@ The Terraform language uses configuration files that are named with the `.tf` fi
 Here is an example of Terraform's HCL syntax:
 ```
 resource "aws_instance" "example" {
-  ami = "abc123"
+ami = "abc123"
 
-  network_interface {
-    # ...
-  }
+network_interface {
+# ...
+}
 }
 ```
 
@@ -378,7 +378,7 @@ resource "aws_instance" "example" {
 #### Style Conventions:
 - Indent two spaces for each nesting level.
 - With multiple arguments, align their equals signs.
-  
+
 Setup the environment:
 ```
 cd terraform/basics
@@ -389,177 +389,177 @@ Redeploy the Ghost image:
 ```
 terraform apply
 ```
-  
+
 Confirm the apply by typing **yes**. The `apply` will take a bit to complete.
-  
+
 Open `main.tf`: 
 ```
 vi main.tf
 ```
-  
+
 `main.tf` contents:
 ```
 # Download the latest Ghost image
 resource "docker_image" "image_id" {
-  name = "ghost:latest"
+name = "ghost:latest"
 }
 
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "ghost_blog"
-  image = "${docker_image.image_id.latest}"
-  ports {
-    internal = "2368"
-    external = "80"
-  }
+name= "ghost_blog"
+image = "${docker_image.image_id.latest}"
+ports {
+internal = "2368"
+external = "80"
+}
 }
 ```
-  
+
 Validate `main.tf`:
 ```
 terraform validate
 ```
-  
+
 Terraform Plan: 
 ```
 terraform plan
 ```
-  
+
 Apply the changes to `main.tf`: 
 ```
 terraform apply
 ```
-  
+
 Confirm the `apply` by typing **yes**.
-  
+
 List the Docker containers: 
 ```
 docker container ls
 ```
-  
+
 Access the Ghost blog by opening a browser and go to: 
 ```
 http:://[SWARM_MANAGER_IP]
 ```
-  
+
 #### Cleaning up the environment
 Reset the environment: 
 ```
 terraform destroy
 ```
-  
+
 Confirm the `destroy` by typing **yes**.
-  
+
 ### Tainting and Updating Resources
 In this lesson, we are going to take a look at how to force a redeploy of resources using tainting. This is an extremely useful skill for when parts of a deployment need to be modified.
 
 #### Tainting and Untainting Resources
 Terraform commands:
-  
+
 - `taint`: Manually mark a resource for recreation 
 - `untaint`: Manually unmark a resource as tainted
-  
+
 Tainting a resource: 
 ```
 terraform taint [NAME]
 ```
-  
+
 Untainting a resource: 
 ```
 terraform untaint [NAME]
 ```
-  
+
 Set up the environment: 
 ```
 cd terraform/basics
 ```
-  
+
 Redeploy the Ghost image: 
 ```
 terraform apply
 ```
-  
+
 Taint the Ghost blog resource: 
 ```
 terraform taint docker_container.container_id
 ```
-  
+
 See what will be changed: 
 ```
 terraform plan
 ```
-  
+
 Remove the taint on the Ghost blog resource: 
 ```
 terraform untaint docker_container.container_id
 ```
-  
+
 Verity that the Ghost blog resource is untainted: 
 ```
 terraform plan
 ```
-  
+
 #### Updating Resources
 Let's edit `main.tf` and change the image to `ghost:alpine`.
-  
+
 Open `main.tf`: 
 ```
 vi main.tf
 ```
-  
+
 `main.tf` contents:
 ```
 # Download the latest Ghost image
 resource "docker_image" "image_id" {
-  name = "ghost:alpine"
+name = "ghost:alpine"
 }
 
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "ghost_blog"
-  image = "${docker_image.image_id.latest}"
-  ports {
-    internal = "2368"
-    external = "80"
-  }
+name= "ghost_blog"
+image = "${docker_image.image_id.latest}"
+ports {
+internal = "2368"
+external = "80"
+}
 }
 ```
-  
+
 Validate changes made to `main.tf`: 
 ```
 terraform validate
 ```
-  
+
 See what changes will be applied: 
 ```
 terraform plan
 ```
-  
+
 Apply image changes: 
 ```
 terraform apply
 ```
-  
+
 List the Docker containers: 
 ```
 docker container ls
 ```
-  
+
 See what image Ghost is using: 
 ```
 docker image ls | grep [IMAGE]
 ```
-  
+
 Check again to see what changes will be applied: 
 ```
 terraform plan
 ```
-  
+
 Apply container changes: 
 ```
 terraform apply
 ```
-  
+
 See what image Ghost is now using: 
 ```
 docker image ls | grep [IMAGE]
@@ -570,48 +570,48 @@ Reset the environment:
 ```
 terraform destroy
 ```
-  
+
 Confirm the `destroy` by typing **yes**.
-  
+
 List the Docker images: 
 ```
 docker image ls
 ```
-  
+
 Remove the Ghost blog image: 
 ```
 docker image rm ghost:latest
 ```
-  
+
 Reset `main.tf`: 
 ```
 vi main.tf
 ```
-  
+
 `main.tf` contents:
 ```
 # Download the latest Ghost image
 resource "docker_image" "image_id" {
-  name = "ghost:latest"
+name = "ghost:latest"
 }
 
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "ghost_blog"
-  image = "${docker_image.image_id.latest}"
-  ports {
-    internal = "2368"
-    external = "80"
-  }
+name= "ghost_blog"
+image = "${docker_image.image_id.latest}"
+ports {
+internal = "2368"
+external = "80"
+}
 }
 ```
 
 ### Terraform Console and Output
 In this lesson, we will use the Terraform Console to view various outputs that we can use for our scripts. The Terraform Console is extremely useful for troubleshooting and planning deployments.
-  
+
 Terraform commands:
 - `terraform console`: Interactive console for Terraform interpolations
-  
+
 Set up the environment:
 ```
 cd terraform/basics
@@ -622,29 +622,29 @@ Redeploy the Ghost image and container:
 ```
 terraform apply
 ```
-  
+
 Show the Terraform resources:
 ```
 terraform show
 ```
-  
+
 Start the Terraform console:
 ```
 terraform console
 ```
-  
+
 Type the following in the console to get the container's name:
 ```
 docker_container.container_id.name
 ```
-  
+
 Type the following in the console to get the container's IP:
 ```
 docker_container.container_id.ip_address
 ```
-  
+
 Break out of the Terraform console by using **Ctrl+C**.
-  
+
 Destroy the environment:
 ```
 terraform destroy
@@ -655,60 +655,60 @@ Edit `main.tf`:
 ```
 vi main.tf
 ```
-  
+
 `main.tf` contents:
 ```
 # Download the latest Ghost Image
 resource "docker_image" "image_id" {
-  name = "ghost:latest"
+name = "ghost:latest"
 }
 
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "blog"
-  image = "${docker_image.image_id.latest}"
-  ports {
-    internal = "2368"
-    external = "80"
-  }
+name= "blog"
+image = "${docker_image.image_id.latest}"
+ports {
+internal = "2368"
+external = "80"
+}
 }
 
 #Output the IP Address of the Container
 output "ip_address" {
-  value       = "${docker_container.container_id.ip_address}"
-  description = "The IP for the container."
+value = "${docker_container.container_id.ip_address}"
+description = "The IP for the container."
 }
 
 #Output the Name of the Container
 output "container_name" {
-  value       = "${docker_container.container_id.name}"
-  description = "The name of the container."
+value = "${docker_container.container_id.name}"
+description = "The name of the container."
 }
 ```
-  
+
 Validate changes made to `main.tf`: 
 ```
 terraform validate
 ```
-  
+
 Apply changes to get output: 
 ```
 terraform apply
 ```
-  
+
 #### Cleaning up the environment
 Reset the environment:
 ```
 terraform destroy
 ```
-  
+
 ### Input Variables
 Input variables serve as parameters for a Terraform file. A variable block configures a single input variable for a Terraform module. Each block declares a single variable.
-  
+
 Syntax:
 ```
 variable [NAME] {
-  [OPTION] = "[VALUE]"
+[OPTION] = "[VALUE]"
 }
 ```
 
@@ -717,92 +717,92 @@ Within the block body (between `{ }`) is configuration for the variable, which a
 - `type` (Optional): If set, this defines the type of the variable. Valid values are `string`, `list`, and `map`.
 - `default` (Optional): This sets a default value for the variable. If no default is provided, Terraform will raise an error if a value is not provided by the caller.
 - `description` (Optional): A human-friendly description for the variable.
-  
+
 Using variables during an apply:
 ```
 terraform apply -var 'foo=bar'
 ```
-  
+
 Set up the environment:
 ```
 cd terraform/basics
 ```
-  
+
 Edit main.tf:
 ```
 vi main.tf
 ```
-  
+
 `main.tf` contents:
 ```
 #Define variables
 variable "image_name" {
-  description = "Image for container."
-  default     = "ghost:latest"
+description = "Image for container."
+default = "ghost:latest"
 }
 
 variable "container_name" {
-  description = "Name of the container."
-  default     = "blog"
+description = "Name of the container."
+default = "blog"
 }
 
 variable "int_port" {
-  description = "Internal port for container."
-  default     = "2368"
+description = "Internal port for container."
+default = "2368"
 }
 
 variable "ext_port" {
-  description = "External port for container."
-  default     = "80"
+description = "External port for container."
+default = "80"
 }
 
 # Download the latest Ghost Image
 resource "docker_image" "image_id" {
-  name = "${var.image_name}"
+name = "${var.image_name}"
 }
 
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "${var.container_name}"
-  image = "${docker_image.image_id.latest}"
-  ports {
-    internal = "${var.int_port}"
-    external = "${var.ext_port}"
-  }
+name= "${var.container_name}"
+image = "${docker_image.image_id.latest}"
+ports {
+internal = "${var.int_port}"
+external = "${var.ext_port}"
+}
 }
 
 #Output the IP Address of the Container
 output "ip_address" {
-  value       = "${docker_container.container_id.ip_address}"
-  description = "The IP for the container."
+value = "${docker_container.container_id.ip_address}"
+description = "The IP for the container."
 }
 
 output "container_name" {
-  value       = "${docker_container.container_id.name}"
-  description = "The name of the container."
+value = "${docker_container.container_id.name}"
+description = "The name of the container."
 }
 ```
-  
+
 Validate the changes:
 ```
 terraform validate
 ```
-  
+
 Plan the changes:
 ```
 terraform plan
 ```
-  
+
 Apply the changes using a variable:
 ```
 terraform apply -var 'ext_port=8080'
 ```
-  
+
 Change the container name:
 ```
 terraform apply -var 'container_name=ghost_blog' -var 'ext_port=8080'
 ```
-  
+
 Reset the environment:
 ```
 terraform destroy -var 'ext_port=8080'
@@ -823,20 +823,20 @@ vi variables.tf
 ```
 #Define variables
 variable "container_name" {
-  description = "Name of the container."
-  default     = "blog"
+description = "Name of the container."
+default = "blog"
 }
 variable "image_name" {
-  description = "Image for container."
-  default     = "ghost:latest"
+description = "Image for container."
+default = "ghost:latest"
 }
 variable "int_port" {
-  description = "Internal port for container."
-  default     = "2368"
+description = "Internal port for container."
+default = "2368"
 }
 variable "ext_port" {
-  description = "External port for container."
-  default     = "80"
+description = "External port for container."
+default = "80"
 }
 ```
 
@@ -849,17 +849,17 @@ main.tf contents:
 ```
 # Download the latest Ghost Image
 resource "docker_image" "image_id" {
-  name = "${var.image_name}"
+name = "${var.image_name}"
 }
 
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "${var.container_name}"
-  image = "${docker_image.image_id.latest}"
-  ports {
-    internal = "${var.int_port}"
-    external = "${var.ext_port}"
-  }
+name= "${var.container_name}"
+image = "${docker_image.image_id.latest}"
+ports {
+internal = "${var.int_port}"
+external = "${var.ext_port}"
+}
 }
 ```
 
@@ -872,13 +872,13 @@ vi outputs.tf
 ```
 #Output the IP Address of the Container
 output "ip_address" {
-  value       = "${docker_container.container_id.ip_address}"
-  description = "The IP for the container."
+value = "${docker_container.container_id.ip_address}"
+description = "The IP for the container."
 }
 
 output "container_name" {
-  value       = "${docker_container.container_id.name}"
-  description = "The name of the container."
+value = "${docker_container.container_id.name}"
+description = "The name of the container."
 }
 ```
 
@@ -904,7 +904,7 @@ terraform destroy -auto-approve -var container_name=ghost_blog
 
 ### Maps and Lookups
 In this lesson, we will create a map to specify different environment variables based on conditions. This will allow us to dynamically deploy infrastructure configurations based on information we pass to the deployment.
-  
+
 Set up the environment:
 ```
 cd terraform/basics
@@ -919,37 +919,37 @@ variables.tf contents:
 ```
 #Define variables
 variable "env" {
-  description = "env: dev or prod"
+description = "env: dev or prod"
 }
 variable "image_name" {
-  type        = "map"
-  description = "Image for container."
-  default     = {
-    dev  = "ghost:latest"
-    prod = "ghost:alpine"
-  }
+type= "map"
+description = "Image for container."
+default = {
+dev= "ghost:latest"
+prod = "ghost:alpine"
+}
 }
 
 variable "container_name" {
-  type        = "map"
-  description = "Name of the container."
-  default     = {
-    dev  = "blog_dev"
-    prod = "blog_prod"
-  }
+type= "map"
+description = "Name of the container."
+default = {
+dev= "blog_dev"
+prod = "blog_prod"
+}
 }
 
 variable "int_port" {
-  description = "Internal port for container."
-  default     = "2368"
+description = "Internal port for container."
+default = "2368"
 }
 variable "ext_port" {
-  type        = "map"
-  description = "External port for container."
-  default     = {
-    dev  = "8081"
-    prod = "80"
-  }
+type= "map"
+description = "External port for container."
+default = {
+dev= "8081"
+prod = "80"
+}
 }
 ```
 
@@ -967,17 +967,17 @@ vi main.tf
 ```
 # Download the latest Ghost Image
 resource "docker_image" "image_id" {
-  name = "${lookup(var.image_name, var.env)}"
+name = "${lookup(var.image_name, var.env)}"
 }
 
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "${lookup(var.container_name, var.env)}"
-  image = "${docker_image.image_id.latest}"
-  ports {
-    internal = "${var.int_port}"
-    external = "${lookup(var.ext_port, var.env)}"
-  }
+name= "${lookup(var.container_name, var.env)}"
+image = "${docker_image.image_id.latest}"
+ports {
+internal = "${var.int_port}"
+external = "${lookup(var.ext_port, var.env)}"
+}
 }
 ```
 
@@ -1028,18 +1028,18 @@ unset TF_VAR_env
 
 ### Terraform Workspaces
 In this lesson, we will see how workspaces can help us deploy multiple environments. By using workspaces, we can deploy multiple environments simultaneously without the state files colliding.
-  
+
 #### Creating a workspace
 Terraform commands:
 - `workspace`: New, list, select and delete Terraform workspaces
-  
+
 Workspace subcommands:
 - `delete`: Delete a workspace 
 - `list`: List Workspaces 
 - `new`: Create a new workspace 
 - `select`: Select a workspace 
 - `show`: Show the name of the current workspace
-  
+
 Setup the environment:
 ```
 cd terraform/basics
@@ -1107,36 +1107,36 @@ terraform destroy -var env=prod
 
 ### Null Resources and Local-exec
 In this lesson, we will utilize a Null Resource in order to perform local commands on our machine without having to deploy extra resources.
-  
+
 Setup the environment:
 ```
 cd terraform/basics
 ```
-  
+
 `main.tf` contents:
 ```
 # Download the latest Ghost Image
 resource "docker_image" "image_id" {
-  name = "${lookup(var.image_name, var.env)}"
+name = "${lookup(var.image_name, var.env)}"
 }
 
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "${lookup(var.container_name, var.env)}"
-  image = "${docker_image.image_id.latest}"
-  ports {
-    internal = "${var.int_port}"
-    external = "${lookup(var.ext_port, var.env)}"
-  }
+name= "${lookup(var.container_name, var.env)}"
+image = "${docker_image.image_id.latest}"
+ports {
+internal = "${var.int_port}"
+external = "${lookup(var.ext_port, var.env)}"
+}
 }
 
 resource "null_resource" "null_id" {
-  provisioner "local-exec" {
-    command = "echo ${docker_container.container_id.name}:${docker_container.container_id.ip_address} >> container.txt"
-  }
+provisioner "local-exec" {
+command = "echo ${docker_container.container_id.name}:${docker_container.container_id.ip_address} >> container.txt"
+}
 }
 ```
-  
+
 Reinitialize Terraform:
 ```
 terraform init
@@ -1204,7 +1204,7 @@ vi main.tf
 ```
 # Download the Image
 resource "docker_image" "image_id" {
-  name = "${var.image_name}"
+name = "${var.image_name}"
 }
 ```
 
@@ -1216,7 +1216,7 @@ vi variables.tf
 `variables.tf` contents:
 ```
 variable "image_name" {
-  description = "Name of the image"
+description = "Name of the image"
 }
 ```
 
@@ -1228,7 +1228,7 @@ vi outputs.tf
 `outputs.tf`: contents:
 ```
 output "image_out" {
-  value       = "${docker_image.image_id.latest}"
+value = "${docker_image.image_id.latest}"
 }
 ```
 
@@ -1267,12 +1267,12 @@ vi main.tf
 ```
 # Start the Container
 resource "docker_container" "container_id" {
-  name  = "${var.container_name}"
-  image = "${var.image}"
-  ports {
-    internal = "${var.int_port}"
-    external = "${var.ext_port}"
-  }
+name= "${var.container_name}"
+image = "${var.image}"
+ports {
+internal = "${var.int_port}"
+external = "${var.ext_port}"
+}
 }
 ```
 
@@ -1299,11 +1299,11 @@ vi outputs.tf
 ```
 #Output the IP Address of the Container
 output "ip" {
-  value = "${docker_container.container_id.ip_address}"
+value = "${docker_container.container_id.ip_address}"
 }
 
 output "container_name" {
-  value = "${docker_container.container_id.name}"
+value = "${docker_container.container_id.name}"
 }
 ```
 
@@ -1329,7 +1329,7 @@ Go to the module directory:
 ```
 cd ~/terraform/basics/modules/
 ```
-  
+
 ```
 touch {main.tf,variables.tf,outputs.tf}
 ```
@@ -1343,17 +1343,17 @@ vi main.tf
 ```
 # Download the image
 module "image" {
-  source = "./image"
-  image_name  = "${var.image_name}"
+source = "./image"
+image_name= "${var.image_name}"
 }
 
 # Start the container
 module "container" {
-  source             = "./container"
-  image              = "${module.image.image_out}"
-  container_name     = "${var.container_name}"
-  int_port           = "${var.int_port}"
-  ext_port           = "${var.ext_port}"
+source = "./container"
+image= "${module.image.image_out}"
+container_name = "${var.container_name}"
+int_port = "${var.int_port}"
+ext_port = "${var.ext_port}"
 }
 ```
 
@@ -1366,20 +1366,20 @@ vi variables.tf
 ```
 #Define variables
 variable "container_name" {
-  description = "Name of the container."
-  default     = "blog"
+description = "Name of the container."
+default = "blog"
 }
 variable "image_name" {
-  description = "Image for container."
-  default     = "ghost:latest"
+description = "Image for container."
+default = "ghost:latest"
 }
 variable "int_port" {
-  description = "Internal port for container."
-  default     = "2368"
+description = "Internal port for container."
+default = "2368"
 }
 variable "ext_port" {
-  description = "External port for container."
-  default     = "80"
+description = "External port for container."
+default = "80"
 }
 ```
 
@@ -1392,11 +1392,11 @@ vi outputs.tf
 ```
 #Output the IP Address of the Container
 output "ip" {
-  value = "${module.container.ip}"
+value = "${module.container.ip}"
 }
 
 output "container_name" {
-  value = "${module.container.container_name}"
+value = "${module.container.container_name}"
 }
 ```
 
@@ -1419,12 +1419,12 @@ Destroy the deployment:
 ```
 terraform destroy -auto-approve
 ```
-  
+
 
 ## Terraform and Docker
 ### Managing Docker Networks
 In this lesson we will build on our knowledge of Terraform and Docker by learning about the `docker_network` resource.
-  
+
 Set up the environment:
 ```
 mkdir -p ~/terraform/docker/networks
@@ -1444,33 +1444,33 @@ vi variables.tf
 `variables.tf` contents:
 ```
 variable "mysql_root_password" {
-  description = "The MySQL root password."
-  default     = "P4sSw0rd0!"
+description = "The MySQL root password."
+default = "P4sSw0rd0!"
 }
 
 variable "ghost_db_username" {
-  description = "Ghost blog database username."
-  default     = "root"
+description = "Ghost blog database username."
+default = "root"
 }
 
 variable "ghost_db_name" {
-  description = "Ghost blog database name."
-  default     = "ghost"
+description = "Ghost blog database name."
+default = "ghost"
 }
 
 variable "mysql_network_alias" {
-  description = "The network alias for MySQL."
-  default     = "db"
+description = "The network alias for MySQL."
+default = "db"
 }
 
 variable "ghost_network_alias" {
-  description = "The network alias for Ghost"
-  default     = "ghost"
+description = "The network alias for Ghost"
+default = "ghost"
 }
 
 variable "ext_port" {
-  description = "Public port for Ghost"
-  default     = "8080"
+description = "Public port for Ghost"
+default = "8080"
 }
 ```
 
@@ -1482,11 +1482,11 @@ vi image.tf
 `image.tf` contents:
 ```
 resource "docker_image" "ghost_image" {
-  name = "ghost:alpine"
+name = "ghost:alpine"
 }
 
 resource "docker_image" "mysql_image" {
-  name = "mysql:5.7"
+name = "mysql:5.7"
 }
 ```
 
@@ -1498,14 +1498,14 @@ vi network.tf
 `network.tf` contents:
 ```
 resource "docker_network" "public_bridge_network" {
-  name   = "public_ghost_network"
-  driver = "bridge"
+name = "public_ghost_network"
+driver = "bridge"
 }
 
 resource "docker_network" "private_bridge_network" {
-  name     = "ghost_mysql_internal"
-  driver   = "bridge"
-  internal = true
+name = "ghost_mysql_internal"
+driver = "bridge"
+internal = true
 }
 ```
 
@@ -1517,39 +1517,39 @@ vi main.tf
 `main.tf` contents:
 ```
 resource "docker_container" "blog_container" {
-  name  = "ghost_blog"
-  image = "${docker_image.ghost_image.name}"
-  env   = [
-    "database__client=mysql",
-    "database__connection__host=${var.mysql_network_alias}",
-    "database__connection__user=${var.ghost_db_username}",
-    "database__connection__password=${var.mysql_root_password}",
-    "database__connection__database=${var.ghost_db_name}"
-  ]
-  ports {
-    internal = "2368"
-    external = "${var.ext_port}"
-  }
-  networks_advanced {
-    name    = "${docker_network.public_bridge_network.name}"
-    aliases = ["${var.ghost_network_alias}"]
-  }
-  networks_advanced {
-    name    = "${docker_network.private_bridge_network.name}"
-    aliases = ["${var.ghost_network_alias}"]
-  }
+name= "ghost_blog"
+image = "${docker_image.ghost_image.name}"
+env = [
+"database__client=mysql",
+"database__connection__host=${var.mysql_network_alias}",
+"database__connection__user=${var.ghost_db_username}",
+"database__connection__password=${var.mysql_root_password}",
+"database__connection__database=${var.ghost_db_name}"
+]
+ports {
+internal = "2368"
+external = "${var.ext_port}"
+}
+networks_advanced {
+name= "${docker_network.public_bridge_network.name}"
+aliases = ["${var.ghost_network_alias}"]
+}
+networks_advanced {
+name= "${docker_network.private_bridge_network.name}"
+aliases = ["${var.ghost_network_alias}"]
+}
 }
 
 resource "docker_container" "mysql_container" {
-  name  = "ghost_database"
-  image = "${docker_image.mysql_image.name}"
-  env   = [
-    "MYSQL_ROOT_PASSWORD=${var.mysql_root_password}"
-  ]
-  networks_advanced {
-    name    = "${docker_network.private_bridge_network.name}"
-    aliases = ["${var.mysql_network_alias}"]
-  }
+name= "ghost_database"
+image = "${docker_image.mysql_image.name}"
+env = [
+"MYSQL_ROOT_PASSWORD=${var.mysql_root_password}"
+]
+networks_advanced {
+name= "${docker_network.private_bridge_network.name}"
+aliases = ["${var.mysql_network_alias}"]
+}
 }
 ```
 
@@ -1582,47 +1582,47 @@ terraform destroy -auto-approve -var 'ext_port=8082'
 `main.tf` contents:
 ```
 resource "docker_container" "mysql_container" {
-  name  = "ghost_database"
-  image = "${docker_image.mysql_image.name}"
-  env   = [
-    "MYSQL_ROOT_PASSWORD=${var.mysql_root_password}"
-  ]
-  networks_advanced {
-    name    = "${docker_network.private_bridge_network.name}"
-    aliases = ["${var.mysql_network_alias}"]
-  }
+name= "ghost_database"
+image = "${docker_image.mysql_image.name}"
+env = [
+"MYSQL_ROOT_PASSWORD=${var.mysql_root_password}"
+]
+networks_advanced {
+name= "${docker_network.private_bridge_network.name}"
+aliases = ["${var.mysql_network_alias}"]
+}
 }
 
 resource "null_resource" "sleep" {
-  depends_on = ["docker_container.mysql_container"]
-  provisioner "local-exec" {
-    command = "sleep 15s"
-  }
+depends_on = ["docker_container.mysql_container"]
+provisioner "local-exec" {
+command = "sleep 15s"
+}
 }
 
 resource "docker_container" "blog_container" {
-  name  = "ghost_blog"
-  image = "${docker_image.ghost_image.name}"
-  depends_on = ["null_resource.sleep", "docker_container.mysql_container"]
-  env   = [
-    "database__client=mysql",
-    "database__connection__host=${var.mysql_network_alias}",
-    "database__connection__user=${var.ghost_db_username}",
-    "database__connection__password=${var.mysql_root_password}",
-    "database__connection__database=${var.ghost_db_name}"
-  ]
-  ports {
-    internal = "2368"
-    external = "${var.ext_port}"
-  }
-  networks_advanced {
-    name    = "${docker_network.public_bridge_network.name}"
-    aliases = ["${var.ghost_network_alias}"]
-  }
-  networks_advanced {
-    name    = "${docker_network.private_bridge_network.name}"
-    aliases = ["${var.ghost_network_alias}"]
-  }
+name= "ghost_blog"
+image = "${docker_image.ghost_image.name}"
+depends_on = ["null_resource.sleep", "docker_container.mysql_container"]
+env = [
+"database__client=mysql",
+"database__connection__host=${var.mysql_network_alias}",
+"database__connection__user=${var.ghost_db_username}",
+"database__connection__password=${var.mysql_root_password}",
+"database__connection__database=${var.ghost_db_name}"
+]
+ports {
+internal = "2368"
+external = "${var.ext_port}"
+}
+networks_advanced {
+name= "${docker_network.public_bridge_network.name}"
+aliases = ["${var.ghost_network_alias}"]
+}
+networks_advanced {
+name= "${docker_network.private_bridge_network.name}"
+aliases = ["${var.ghost_network_alias}"]
+}
 }
 ```
 
@@ -1638,7 +1638,7 @@ terraform apply tfplan
 
 ### Managing Docker Volumes
 In this lesson, we will add a volume to our Ghost Blog/MySQL setup.
-  
+
 Destroy the existing environment:
 ```
 terraform destroy -auto-approve -var 'ext_port=8082'
@@ -1658,7 +1658,7 @@ vi volumes.tf
 `volumes.tf` contents:
 ```
 resource "docker_volume" "mysql_data_volume" {
-  name = "mysql_data"
+name = "mysql_data"
 }
 ```
 
@@ -1670,51 +1670,51 @@ vi main.tf
 `main.tf` contents:
 ```
 resource "docker_container" "mysql_container" {
-  name  = "ghost_database"
-  image = "${docker_image.mysql_image.name}"
-  env   = [
-    "MYSQL_ROOT_PASSWORD=${var.mysql_root_password}"
-  ]
-  volumes {
-    volume_name    = "${docker_volume.mysql_data_volume.name}"
-    container_path = "/var/lib/mysql"
-  }
-  networks_advanced {
-    name    = "${docker_network.private_bridge_network.name}"
-    aliases = ["${var.mysql_network_alias}"]
-  }
+name= "ghost_database"
+image = "${docker_image.mysql_image.name}"
+env = [
+"MYSQL_ROOT_PASSWORD=${var.mysql_root_password}"
+]
+volumes {
+volume_name= "${docker_volume.mysql_data_volume.name}"
+container_path = "/var/lib/mysql"
+}
+networks_advanced {
+name= "${docker_network.private_bridge_network.name}"
+aliases = ["${var.mysql_network_alias}"]
+}
 }
 
 resource "null_resource" "sleep" {
-  depends_on = ["docker_container.mysql_container"]
-  provisioner "local-exec" {
-    command = "sleep 15s"
-  }
+depends_on = ["docker_container.mysql_container"]
+provisioner "local-exec" {
+command = "sleep 15s"
+}
 }
 
 resource "docker_container" "blog_container" {
-  name  = "ghost_blog"
-  image = "${docker_image.ghost_image.name}"
-  depends_on = ["null_resource.sleep", "docker_container.mysql_container"]
-  env   = [
-    "database__client=mysql",
-    "database__connection__host=${var.mysql_network_alias}",
-    "database__connection__user=${var.ghost_db_username}",
-    "database__connection__password=${var.mysql_root_password}",
-    "database__connection__database=${var.ghost_db_name}"
-  ]
-  ports {
-    internal = "2368"
-    external = "${var.ext_port}"
-  }
-  networks_advanced {
-    name    = "${docker_network.public_bridge_network.name}"
-    aliases = ["${var.ghost_network_alias}"]
-  }
-  networks_advanced {
-    name    = "${docker_network.private_bridge_network.name}"
-    aliases = ["${var.ghost_network_alias}"]
-  }
+name= "ghost_blog"
+image = "${docker_image.ghost_image.name}"
+depends_on = ["null_resource.sleep", "docker_container.mysql_container"]
+env = [
+"database__client=mysql",
+"database__connection__host=${var.mysql_network_alias}",
+"database__connection__user=${var.ghost_db_username}",
+"database__connection__password=${var.mysql_root_password}",
+"database__connection__database=${var.ghost_db_name}"
+]
+ports {
+internal = "2368"
+external = "${var.ext_port}"
+}
+networks_advanced {
+name= "${docker_network.public_bridge_network.name}"
+aliases = ["${var.ghost_network_alias}"]
+}
+networks_advanced {
+name= "${docker_network.private_bridge_network.name}"
+aliases = ["${var.ghost_network_alias}"]
+}
 }
 ```
 
@@ -1755,7 +1755,7 @@ terraform destroy -auto-approve -var 'ext_port=8082'
 
 ### Creating Swarm Services
 In this lesson, we will convert our Ghost and MySQL containers over to using Swarm services. Swarm services are a more production-ready way of running containers.
-  
+
 Setup the environment:
 ```
 cp -r volumes/ services
@@ -1765,119 +1765,119 @@ cd services
 `variables.tf` contents:
 ```
 variable "mysql_root_password" {
-  description = "The MySQL root password."
-  default     = "P4sSw0rd0!"
+description = "The MySQL root password."
+default = "P4sSw0rd0!"
 }
 
 variable "ghost_db_username" {
-  description = "Ghost blog database username."
-  default     = "root"
+description = "Ghost blog database username."
+default = "root"
 }
 
 variable "ghost_db_name" {
-  description = "Ghost blog database name."
-  default     = "ghost"
+description = "Ghost blog database name."
+default = "ghost"
 }
 
 variable "mysql_network_alias" {
-  description = "The network alias for MySQL."
-  default     = "db"
+description = "The network alias for MySQL."
+default = "db"
 }
 
 variable "ghost_network_alias" {
-  description = "The network alias for Ghost"
-  default     = "ghost"
+description = "The network alias for Ghost"
+default = "ghost"
 }
 
 variable "ext_port" {
-  description = "The public port for Ghost"
+description = "The public port for Ghost"
 }
 ```
 
 `images.tf` contents:
 ```
 resource "docker_image" "ghost_image" {
-  name = "ghost:alpine"
+name = "ghost:alpine"
 }
 
 resource "docker_image" "mysql_image" {
-  name = "mysql:5.7"
+name = "mysql:5.7"
 }
 ```
 
 `network.tf` contents:
 ```
 resource "docker_network" "public_bridge_network" {
-  name   = "public_network"
-  driver = "overlay"
+name = "public_network"
+driver = "overlay"
 }
 
 resource "docker_network" "private_bridge_network" {
-  name     = "mysql_internal"
-  driver   = "overlay"
-  internal = true
+name = "mysql_internal"
+driver = "overlay"
+internal = true
 }
 ```
 
 `volumes.tf` contents:
 ```
 resource "docker_volume" "mysql_data_volume" {
-  name = "mysql_data"
+name = "mysql_data"
 }
 ```
 
 `main.tf` contents:
 ```
 resource "docker_service" "ghost-service" {
-  name = "ghost"
+name = "ghost"
 
-  task_spec {
-    container_spec {
-      image = "${docker_image.ghost_image.name}"
+task_spec {
+container_spec {
+image = "${docker_image.ghost_image.name}"
 
-      env {
-         database__client               = "mysql"
-         database__connection__host     = "${var.mysql_network_alias}"
-         database__connection__user     = "${var.ghost_db_username}"
-         database__connection__password = "${var.mysql_root_password}"
-         database__connection__database = "${var.ghost_db_name}"
-      }
-    }
-    networks = [
-      "${docker_network.public_bridge_network.name}",
-      "${docker_network.private_bridge_network.name}"
-    ]
-  }
+env {
+ database__client = "mysql"
+ database__connection__host = "${var.mysql_network_alias}"
+ database__connection__user = "${var.ghost_db_username}"
+ database__connection__password = "${var.mysql_root_password}"
+ database__connection__database = "${var.ghost_db_name}"
+}
+}
+networks = [
+"${docker_network.public_bridge_network.name}",
+"${docker_network.private_bridge_network.name}"
+]
+}
 
-  endpoint_spec {
-    ports {
-      target_port    = "2368"
-      published_port = "${var.ext_port}"
-    }
-  }
+endpoint_spec {
+ports {
+target_port= "2368"
+published_port = "${var.ext_port}"
+}
+}
 }
 
 resource "docker_service" "mysql-service" {
-  name = "${var.mysql_network_alias}"
+name = "${var.mysql_network_alias}"
 
-  task_spec {
-    container_spec {
-      image = "${docker_image.mysql_image.name}"
+task_spec {
+container_spec {
+image = "${docker_image.mysql_image.name}"
 
-      env {
-        MYSQL_ROOT_PASSWORD = "${var.mysql_root_password}"
-      }
+env {
+MYSQL_ROOT_PASSWORD = "${var.mysql_root_password}"
+}
 
-      mounts = [
-        {
-          target = "/var/lib/mysql"
-          source = "${docker_volume.mysql_data_volume.name}"
-          type   = "volume"
-        }
-      ]
-    }
-    networks = ["${docker_network.private_bridge_network.name}"]
-  }
+mounts = [
+{
+target = "/var/lib/mysql"
+source = "${docker_volume.mysql_data_volume.name}"
+type = "volume"
+}
+]
+}
+networks = ["${docker_network.private_bridge_network.name}"]
+}
 }
 ```
 
@@ -1915,7 +1915,7 @@ terraform destroy -auto-approve -var 'ext_port=8082'
 
 ### Using Secrets
 In this lesson, we'll explore using Terraform to store sensitive data, by using Docker Secrets.
-  
+
 Setup the environment:
 ```
 mkdir secrets
@@ -1935,11 +1935,11 @@ vi variables.tf
 `variables.tf` contents:
 ```
 variable "mysql_root_password" {
-  default     = "cDRzU1dvUmQwIQo="
+default = "cDRzU1dvUmQwIQo="
 }
 
 variable "mysql_db_password" {
-  default     = "cDRzU1dvUmQwIQo="
+default = "cDRzU1dvUmQwIQo="
 }
 ```
 
@@ -1951,7 +1951,7 @@ vi image.tf
 `image.tf` contents:
 ```
 resource "docker_image" "mysql_image" {
-  name = "mysql:5.7"
+name = "mysql:5.7"
 }
 ```
 
@@ -1963,13 +1963,13 @@ vi secrets.tf
 `secrets.tf` contents:
 ```
 resource "docker_secret" "mysql_root_password" {
-  name = "root_password"
-  data = "${var.mysql_root_password}"
+name = "root_password"
+data = "${var.mysql_root_password}"
 }
 
 resource "docker_secret" "mysql_db_password" {
-  name = "db_password"
-  data = "${var.mysql_db_password}"
+name = "db_password"
+data = "${var.mysql_db_password}"
 }
 ```
 
@@ -1981,9 +1981,9 @@ vi networks.tf
 `networks.tf` contents:
 ```
 resource "docker_network" "private_overlay_network" {
-  name     = "mysql_internal"
-  driver   = "overlay"
-  internal = true
+name = "mysql_internal"
+driver = "overlay"
+internal = true
 }
 ```
 
@@ -1995,7 +1995,7 @@ vi volumes.tf
 `volumes.tf` contents:
 ```
 resource "docker_volume" "mysql_data_volume" {
-  name = "mysql_data"
+name = "mysql_data"
 }
 ```
 
@@ -2007,43 +2007,43 @@ vi main.tf
 `main.tf` contents:
 ```
 resource "docker_service" "mysql-service" {
-  name = "mysql_db"
+name = "mysql_db"
 
-  task_spec {
-    container_spec {
-      image = "${docker_image.mysql_image.name}"
+task_spec {
+container_spec {
+image = "${docker_image.mysql_image.name}"
 
-      secrets = [
-        {
-          secret_id   = "${docker_secret.mysql_root_password.id}"
-          secret_name = "${docker_secret.mysql_root_password.name}"
-          file_name   = "/run/secrets/${docker_secret.mysql_root_password.name}"
-        },
-        {
-          secret_id   = "${docker_secret.mysql_db_password.id}"
-          secret_name = "${docker_secret.mysql_db_password.name}"
-          file_name   = "/run/secrets/${docker_secret.mysql_db_password.name}"
-        }
-      ]
+secrets = [
+{
+secret_id = "${docker_secret.mysql_root_password.id}"
+secret_name = "${docker_secret.mysql_root_password.name}"
+file_name = "/run/secrets/${docker_secret.mysql_root_password.name}"
+},
+{
+secret_id = "${docker_secret.mysql_db_password.id}"
+secret_name = "${docker_secret.mysql_db_password.name}"
+file_name = "/run/secrets/${docker_secret.mysql_db_password.name}"
+}
+]
 
-      env {
-        MYSQL_ROOT_PASSWORD_FILE = "/run/secrets/${docker_secret.mysql_root_password.name}"
-        MYSQL_DATABASE           = "mydb"
-        MYSQL_PASSWORD_FILE      = "/run/secrets/${docker_secret.mysql_db_password.name}"
-      }
+env {
+MYSQL_ROOT_PASSWORD_FILE = "/run/secrets/${docker_secret.mysql_root_password.name}"
+MYSQL_DATABASE = "mydb"
+MYSQL_PASSWORD_FILE= "/run/secrets/${docker_secret.mysql_db_password.name}"
+}
 
-      mounts = [
-        {
-          target = "/var/lib/mysql"
-          source = "${docker_volume.mysql_data_volume.name}"
-          type   = "volume"
-        }
-      ]
-    }
-    networks = [
-      "${docker_network.private_overlay_network.name}"
-    ]
-  }
+mounts = [
+{
+target = "/var/lib/mysql"
+source = "${docker_volume.mysql_data_volume.name}"
+type = "volume"
+}
+]
+}
+networks = [
+"${docker_network.private_overlay_network.name}"
+]
+}
 }
 ```
 
@@ -2086,11 +2086,11 @@ Destroy the environment:
 ```
 terraform destroy -auto-approve
 ```
-  
+
 ## Using Terraform in a CI/CD Environment
 ### Building a Custom Jenkins Image
 In this lesson, we will learn how to build a Jenkins Docker image that has Docker and Terraform baked in. We will be using this image throughout the remainder of this section.
-  
+
 Setup the environment:
 ```
 mkdir -p jenkins
@@ -2126,7 +2126,7 @@ docker image ls
 
 ### Setting Up Jenkins
 In this lesson, we will take the Jenkins image we built in the previous lesson, and deploy a Docker container using Terraform.
-  
+
 Edit `main.tf`:
 ```
 vi main.tf
@@ -2136,27 +2136,27 @@ vi main.tf
 ```
 # Jenkins Volume
 resource "docker_volume" "jenkins_volume" {
-  name = "jenkins_data"
+name = "jenkins_data"
 }
 
 # Start the Jenkins Container
 resource "docker_container" "jenkins_container" {
-  name  = "jenkins"
-  image = "jenkins:terraform"
-  ports {
-    internal = "8080"
-    external = "8080"
-  }
+name= "jenkins"
+image = "jenkins:terraform"
+ports {
+internal = "8080"
+external = "8080"
+}
 
-  volumes {
-    volume_name    = "${docker_volume.jenkins_volume.name}"
-    container_path = "/var/jenkins_home"
-  }
+volumes {
+volume_name= "${docker_volume.jenkins_volume.name}"
+container_path = "/var/jenkins_home"
+}
 
-  volumes {
-    host_path      = "/var/run/docker.sock"
-    container_path = "/var/run/docker.sock"
-  }
+volumes {
+host_path= "/var/run/docker.sock"
+container_path = "/var/run/docker.sock"
+}
 }
 ```
 
@@ -2182,15 +2182,15 @@ docker exec jenkins cat /var/jenkins_home/secrets/initialAdminPassword
 
 ### Creating a Jenkins Job
 In this lesson, we will start working with Jenkins by creating a simple build job. This job will deploy a Docker container using Terraform, list the container, and then destroy it.
-  
+
 In the Jenkins dashboard, Click **New Item**.
-  
+
 Select **Freestyle Project**, and enter an item name of **DeployGhost**. Click **Ok**.
-  
+
 Under Source Code Management, select **Git**. Enter a Repository URL of https://github.com/linuxacademy/content-terraform-docker.git
-  
+
 In the Build section, click **Add build step** and select **Execute shell** from the dropdown.
-  
+
 Add the following in the Command area:
 ```
 terraform init
@@ -2201,162 +2201,162 @@ terraform destroy -auto-approve
 ```
 
 Click **Save**.
-  
+
 Now, if we click Build Now in the left-hand menu, our project will start building. Clicking the little dropdown arrow next to #1 will give us a menu. Select **Console Output** to watch things build. Once we get a `Finished: SUCCESS` message, we're done.
 
 ### Building a Jenkins Pipeline Part 1
 In this lesson, we will create the first Jenkins Pipeline that will deploy out a Ghost blog.
-  
+
 In the Jenkins dashboard, click **New Item** Enter an item name of **PipelinePart1**, and select Pipeline. Click **Ok**.
-  
+
 Check the box for *This project is parameterized*. Click **Add Parameter** and select *Choice Parameter*. Give it a Name of **action**. For Choices, enter **Deploy** and **Destroy**, and make sure they are on separate lines. Enter **The action that will be executed** as the *Description*.
-  
+
 Click **Add Parameter** and select **Choice Parameter** again. This time, name it **image_name**. Enter **ghost:latest** and **ghost:alpine** in the *Choices* box, making sure they are on separate lines. Enter **The image Ghost Blog will deploy** as a *Description*.
-  
+
 Click **Add Parameter** a third time, and select **String Parameter**. Give it a Name of **ext_port**. Set the *Default Value* to **80**. Enter **The Public Port** as the *Description*.
-  
+
 Down in the *Pipeline* section, give a *Definition* of **Pipeline script**, and add the following to the *Script*:
 ```
 node {
-  git 'https://github.com/linuxacademy/content-terraform-docker.git'
-  if(action == 'Deploy') {
-    stage('init') {
-        sh """
-            terraform init
-        """
-    }
-    stage('plan') {
-      sh label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var image_name=${image_name} -var ext_port=${ext_port}"
-      script {
-          timeout(time: 10, unit: 'MINUTES') {
-              input(id: "Deploy Gate", message: "Deploy environment?", ok: 'Deploy')
-          }
-      }
-    }
-    stage('apply') {
-        sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
-    }
-  }
+git 'https://github.com/linuxacademy/content-terraform-docker.git'
+if(action == 'Deploy') {
+stage('init') {
+sh """
+terraform init
+"""
+}
+stage('plan') {
+sh label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var image_name=${image_name} -var ext_port=${ext_port}"
+script {
+timeout(time: 10, unit: 'MINUTES') {
+input(id: "Deploy Gate", message: "Deploy environment?", ok: 'Deploy')
+}
+}
+}
+stage('apply') {
+sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
+}
+}
 
-  if(action == 'Destroy') {
-    stage('plan_destroy') {
-      sh label: 'terraform plan destroy', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var image_name=${image_name} -var ext_port=${ext_port}"
-    }
-    stage('destroy') {
-      script {
-          timeout(time: 10, unit: 'MINUTES') {
-              input(id: "Destroy Gate", message: "Destroy environment?", ok: 'Destroy')
-          }
-      }
-      sh label: 'Destroy environment', script: "terraform apply -lock=false -input=false tfdestroyplan"
-    }
-  }
+if(action == 'Destroy') {
+stage('plan_destroy') {
+sh label: 'terraform plan destroy', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var image_name=${image_name} -var ext_port=${ext_port}"
+}
+stage('destroy') {
+script {
+timeout(time: 10, unit: 'MINUTES') {
+input(id: "Destroy Gate", message: "Destroy environment?", ok: 'Destroy')
+}
+}
+sh label: 'Destroy environment', script: "terraform apply -lock=false -input=false tfdestroyplan"
+}
+}
 }
 ```
 
 ### Building a Jenkins Pipeline Part 2
 In this lesson, we will create a Jenkins Pipeline to deploy out a Swarm service.
-  
+
 In the Jenkins dashboard, click **New Item** Enter an item name of **PipelinePart2**, and select Pipeline. Click **Ok**.
-  
+
 Check the box for *This project is parameterized*. Click **Add Parameter** and select *Choice Parameter*. Give it a Name of **action**. For Choices, enter **Deploy** and **Destroy**, and make sure they are on separate lines. Enter **The action that will be executed** as the *Description*.
-  
+
 Click **Add Parameter** and select **Choice Parameter** again. This time, name it **image_name**. Enter **ghost:latest** and **ghost:alpine** in the *Choices* box, making sure they are on separate lines. Enter **The image Ghost Blog will deploy** as a *Description*.
-  
+
 Click **Add Parameter** a third time, and select **String Parameter**. Give it a Name of **ext_port**. Set the *Default Value* to **80**. Enter **The Public Port** as the *Description*.
-  
+
 Down in the *Pipeline* section, give a *Definition* of **Pipeline script**, and add the following to the *Script*:
 ```
 node {
-  git 'https://github.com/linuxacademy/content-terraform-docker-service.git'
-  if(action == 'Deploy') {
-    stage('init') {
-      sh label: 'terraform init', script: "terraform init"
-    }
-    stage('plan') {
-      sh label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var image_name=${image_name} -var ghost_ext_port=${ghost_ext_port}"
-      script {
-          timeout(time: 10, unit: 'MINUTES') {
-            input(id: "Deploy Gate", message: "Deploy environment?", ok: 'Deploy')
-          }
-      }
-    }
-    stage('apply') {
-      sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
-    }
-  }
+git 'https://github.com/linuxacademy/content-terraform-docker-service.git'
+if(action == 'Deploy') {
+stage('init') {
+sh label: 'terraform init', script: "terraform init"
+}
+stage('plan') {
+sh label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var image_name=${image_name} -var ghost_ext_port=${ghost_ext_port}"
+script {
+timeout(time: 10, unit: 'MINUTES') {
+input(id: "Deploy Gate", message: "Deploy environment?", ok: 'Deploy')
+}
+}
+}
+stage('apply') {
+sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
+}
+}
 
-  if(action == 'Destroy') {
-    stage('plan_destroy') {
-      sh label: 'terraform plan', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var image_name=${image_name} -var ghost_ext_port=${ghost_ext_port}"
-    }
-    stage('destroy') {
-      script {
-          timeout(time: 10, unit: 'MINUTES') {
-              input(id: "Destroy Gate", message: "Destroy environment?", ok: 'Destroy')
-          }
-      }
-      sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfdestroyplan"
-    }
-    stage('cleanup') {
-      sh label: 'cleanup', script: "rm -rf terraform.tfstat"
-    }
-  }
+if(action == 'Destroy') {
+stage('plan_destroy') {
+sh label: 'terraform plan', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var image_name=${image_name} -var ghost_ext_port=${ghost_ext_port}"
+}
+stage('destroy') {
+script {
+timeout(time: 10, unit: 'MINUTES') {
+input(id: "Destroy Gate", message: "Destroy environment?", ok: 'Destroy')
+}
+}
+sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfdestroyplan"
+}
+stage('cleanup') {
+sh label: 'cleanup', script: "rm -rf terraform.tfstat"
+}
+}
 }
 ```
 
 ### Building a Jenkins Pipeline Part 3
 In this lesson, we will complete working with Jenkins by creating a pipeline that will create a MySQL Swarm service that uses Docker Secrets.
-  
+
 In the Jenkins dashboard, click **New Item** Enter an item name of **PipelinePart2**, and select Pipeline. Click **Ok**.
-  
+
 Check the box for *This project is parameterized*. Click **Add Parameter** and select *Choice Parameter*. Give it a Name of **action**. For Choices, enter **Deploy** and **Destroy**, and make sure they are on separate lines. Enter **The action that will be executed** as the *Description*.
-  
+
 Click **Add Parameter** and select **String Parameter**. For the name, enter **mysql_root_password**.. Enter **P4ssW0rd0!** in the *Default Value* box. Enter **MySQL root password**. as a *Description*.
-  
+
 For the next parameter, click **Add Parameter** once more and select **String Parameter**. For the name, enter **mysql_user_password**.. Enter **paSsw0rd0!** in the *Default Value* box. Enter **MySQL user password**. as a *Description*.
 
 Down in the *Pipeline* section, give a *Definition* of **Pipeline script**, and add the following to the *Script*:
 ```
 node {
-  git 'https://github.com/linuxacademy/content-terraform-docker-secrets.git'
-  if(action == 'Deploy') {
-    stage('init') {
-      sh label: 'terraform init', script: "terraform init"
-    }
-    stage('plan') {
-      def ROOT_PASSWORD = sh (returnStdout: true, script: """echo ${mysql_root_password} | base64""").trim()
-      def USER_PASSWORD = sh (returnStdout: true, script: """echo ${mysql_user_password} | base64""").trim()
-      sh label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var mysql_root_password=${ROOT_PASSWORD} -var mysql_db_password=${USER_PASSWORD}"
-      script {
-          timeout(time: 10, unit: 'MINUTES') {
-              input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
-          }
-      }
-    }
-    stage('apply') {
-      sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
-    }
-  }
+git 'https://github.com/linuxacademy/content-terraform-docker-secrets.git'
+if(action == 'Deploy') {
+stage('init') {
+sh label: 'terraform init', script: "terraform init"
+}
+stage('plan') {
+def ROOT_PASSWORD = sh (returnStdout: true, script: """echo ${mysql_root_password} | base64""").trim()
+def USER_PASSWORD = sh (returnStdout: true, script: """echo ${mysql_user_password} | base64""").trim()
+sh label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var mysql_root_password=${ROOT_PASSWORD} -var mysql_db_password=${USER_PASSWORD}"
+script {
+timeout(time: 10, unit: 'MINUTES') {
+input(id: "Deploy Gate", message: "Deploy ${params.project_name}?", ok: 'Deploy')
+}
+}
+}
+stage('apply') {
+sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
+}
+}
 
-  if(action == 'Destroy') {
-    stage('plan_destroy') {
-      def ROOT_PASSWORD = sh (returnStdout: true, script: """echo ${mysql_root_password} | base64""").trim()
-      def USER_PASSWORD = sh (returnStdout: true, script: """echo ${mysql_user_password} | base64""").trim()
-      sh label: 'terraform plan', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var mysql_root_password=${ROOT_PASSWORD} -var mysql_db_password=${USER_PASSWORD}"
-    }
-    stage('destroy') {
-      script {
-          timeout(time: 10, unit: 'MINUTES') {
-              input(id: "Destroy Gate", message: "Destroy ${params.project_name}?", ok: 'Destroy')
-          }
-      }
-      sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfdestroyplan"
-    }
-    stage('cleanup') {
-      sh label: 'cleanup', script: "rm -rf terraform.tfstat"
-    }
-  }
+if(action == 'Destroy') {
+stage('plan_destroy') {
+def ROOT_PASSWORD = sh (returnStdout: true, script: """echo ${mysql_root_password} | base64""").trim()
+def USER_PASSWORD = sh (returnStdout: true, script: """echo ${mysql_user_password} | base64""").trim()
+sh label: 'terraform plan', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var mysql_root_password=${ROOT_PASSWORD} -var mysql_db_password=${USER_PASSWORD}"
+}
+stage('destroy') {
+script {
+timeout(time: 10, unit: 'MINUTES') {
+input(id: "Destroy Gate", message: "Destroy ${params.project_name}?", ok: 'Destroy')
+}
+}
+sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfdestroyplan"
+}
+stage('cleanup') {
+sh label: 'cleanup', script: "rm -rf terraform.tfstat"
+}
+}
 }
 ```
 
@@ -2365,29 +2365,29 @@ node {
 - We're going to create AWS sandbox from Linux academy and access it. 
 - Be adviced that sandbox will be destroyed after some time 
 - To allow accessing our AWS resources first of all we need to export our keys
-  - export AWS_ACCESS_KEY_ID="AKIAW6UUHXHLLNJYDW5R"
-  - export AWS_SECRET_ACCESS_KEY="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"
+- export AWS_ACCESS_KEY_ID="AKIAW6UUHXHLLNJYDW5R"
+- export AWS_SECRET_ACCESS_KEY="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"
 
 
 ### Our Architecture: What We're Going to Build
 We will have several modules for each component of our architecture
 - Root:
-  - Storage Module
-  - Network Module
-  - Compute Module
+- Storage Module
+- Network Module
+- Compute Module
 
 ![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/terraform/images/img2.png)
-  
+
 High-level diagram will be following:
 - Storage module is going to use S3 Bucket 
 - Network module will deploy internet gateway with public and private route tables
 - Two EC2 instances will be deployed and ssh keys generated for them. 
-  
+
 ![img](https://raw.githubusercontent.com/Bes0n/SYSWIKI/master/documentation/terraform/images/img3.png)
 
 ### Storage Part 1: The S3 Bucket and Random ID
 In this lesson, we will start working with AWS by creating a S3 Terraform module.
-  
+
 Environment setup:
 ```
 mkdir -p ~/terraform/AWS/storage
@@ -2405,19 +2405,19 @@ main.tf:
 
 # Create a random id
 resource "random_id" "tf_bucket_id" {
-  byte_length = 2
+byte_length = 2
 }
 
 # Create the bucket
 resource "aws_s3_bucket" "tf_code" {
-    bucket        = "${var.project_name}-${random_id.tf_bucket_id.dec}"
-    acl           = "private"
+bucket= "${var.project_name}-${random_id.tf_bucket_id.dec}"
+acl = "private"
 
-    force_destroy =  true
+force_destroy =true
 
-    tags {
-      Name = "tf_bucket"
-    }
+tags {
+Name = "tf_bucket"
+}
 }
 ```
 
@@ -2441,7 +2441,7 @@ outputs.tf:
 ```
 #----storage/outputs.tf----
 output "bucketname" {
-  value = "${aws_s3_bucket.tf_code.id}"
+value = "${aws_s3_bucket.tf_code.id}"
 }
 ```
 
@@ -2475,7 +2475,7 @@ terraform destroy -auto-approve -var project_name=la-terraform
 
 ### Storage Part 2: The Root Module
 In this lesson, we will start working on our root module. We'll start off by adding the storage module created in the previous lesson.
-  
+
 Environment setup:
 ```
 cd ~/terraform/AWS
@@ -2491,13 +2491,13 @@ main.tf:
 ```
 #----root/main.tf-----
 provider "aws" {
-  region = "${var.aws_region}"
+region = "${var.aws_region}"
 }
 
 # Deploy Storage Resources
 module "storage" {
-  source       = "./storage"
-  project_name = "${var.project_name}"
+source = "./storage"
+project_name = "${var.project_name}"
 }
 ```
 
@@ -2522,7 +2522,7 @@ vi terraform.tfvars
 
 terraform.tfvars:
 ```
-aws_region   = "us-east-1"
+aws_region = "us-east-1"
 project_name = "la-terraform"
 ```
 
@@ -2537,7 +2537,7 @@ outputs.tf:
 
 #----storage outputs------
 output "Bucket Name" {
-  value = "${module.storage.bucketname}"
+value = "${module.storage.bucketname}"
 }
 ```
 
@@ -2565,10 +2565,10 @@ terraform destroy -auto-approve
 
 ### Networking Part 1: VPC, SG, Subnets
 In this lesson, we will start our networking resource deployment and we will deploy our Internet Gateway and route tables.
-  
+
 Environment setup:
 ```
-mkdir -p  ~/terraform/AWS/networking
+mkdir -p~/terraform/AWS/networking
 cd ~/terraform/AWS/networking
 ```
 
@@ -2589,90 +2589,90 @@ main.tf:
 data "aws_availability_zones" "available" {}
 
 resource "aws_vpc" "tf_vpc" {
-  cidr_block           = "${var.vpc_cidr}"
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+cidr_block = "${var.vpc_cidr}"
+enable_dns_hostnames = true
+enable_dns_support = true
 
-  tags {
-    Name = "tf_vpc"
-  }
+tags {
+Name = "tf_vpc"
+}
 }
 
 resource "aws_internet_gateway" "tf_internet_gateway" {
-  vpc_id = "${aws_vpc.tf_vpc.id}"
+vpc_id = "${aws_vpc.tf_vpc.id}"
 
-  tags {
-    Name = "tf_igw"
-  }
+tags {
+Name = "tf_igw"
+}
 }
 
 resource "aws_route_table" "tf_public_rt" {
-  vpc_id = "${aws_vpc.tf_vpc.id}"
+vpc_id = "${aws_vpc.tf_vpc.id}"
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = "${aws_internet_gateway.tf_internet_gateway.id}"
-  }
+route {
+cidr_block = "0.0.0.0/0"
+gateway_id = "${aws_internet_gateway.tf_internet_gateway.id}"
+}
 
-  tags {
-    Name = "tf_public"
-  }
+tags {
+Name = "tf_public"
+}
 }
 
 resource "aws_default_route_table" "tf_private_rt" {
-  default_route_table_id  = "${aws_vpc.tf_vpc.default_route_table_id}"
+default_route_table_id= "${aws_vpc.tf_vpc.default_route_table_id}"
 
-  tags {
-    Name = "tf_private"
-  }
+tags {
+Name = "tf_private"
+}
 }
 
 resource "aws_subnet" "tf_public_subnet" {
-  count                   = 2
-  vpc_id                  = "${aws_vpc.tf_vpc.id}"
-  cidr_block              = "${var.public_cidrs[count.index]}"
-  map_public_ip_on_launch = true
-  availability_zone       = "${data.aws_availability_zones.available.names[count.index]}"
+count = 2
+vpc_id= "${aws_vpc.tf_vpc.id}"
+cidr_block= "${var.public_cidrs[count.index]}"
+map_public_ip_on_launch = true
+availability_zone = "${data.aws_availability_zones.available.names[count.index]}"
 
-  tags {
-    Name = "tf_public_${count.index + 1}"
-  }
+tags {
+Name = "tf_public_${count.index + 1}"
+}
 }
 
 resource "aws_route_table_association" "tf_public_assoc" {
-  count          = "${aws_subnet.tf_public_subnet.count}"
-  subnet_id      = "${aws_subnet.tf_public_subnet.*.id[count.index]}"
-  route_table_id = "${aws_route_table.tf_public_rt.id}"
+count= "${aws_subnet.tf_public_subnet.count}"
+subnet_id= "${aws_subnet.tf_public_subnet.*.id[count.index]}"
+route_table_id = "${aws_route_table.tf_public_rt.id}"
 }
 
 resource "aws_security_group" "tf_public_sg" {
-  name        = "tf_public_sg"
-  description = "Used for access to the public instances"
-  vpc_id      = "${aws_vpc.tf_vpc.id}"
+name= "tf_public_sg"
+description = "Used for access to the public instances"
+vpc_id= "${aws_vpc.tf_vpc.id}"
 
-  #SSH
+#SSH
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["${var.accessip}"]
-  }
+ingress {
+from_port = 22
+to_port = 22
+protocol= "tcp"
+cidr_blocks = ["${var.accessip}"]
+}
 
-  #HTTP
+#HTTP
 
-  ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["${var.accessip}"]
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
+ingress {
+from_port = 80
+to_port = 80
+protocol= "tcp"
+cidr_blocks = ["${var.accessip}"]
+}
+egress {
+from_port = 0
+to_port = 0
+protocol= "-1"
+cidr_blocks = ["0.0.0.0/0"]
+}
 }
 ```
 
@@ -2687,7 +2687,7 @@ variables.tf:
 variable "vpc_cidr" {}
 
 variable "public_cidrs" {
-  type = "list"
+type = "list"
 }
 
 variable "accessip" {}
@@ -2703,26 +2703,26 @@ outputs.tf:
 #-----networking/outputs.tf----
 
 output "public_subnets" {
-  value = "${aws_subnet.tf_public_subnet.*.id}"
+value = "${aws_subnet.tf_public_subnet.*.id}"
 }
 
 output "public_sg" {
-  value = "${aws_security_group.tf_public_sg.id}"
+value = "${aws_security_group.tf_public_sg.id}"
 }
 
 output "subnet_ips" {
-  value = "${aws_subnet.tf_public_subnet.*.cidr_block}"
+value = "${aws_subnet.tf_public_subnet.*.cidr_block}"
 }
 ```
 
 terraform.tfvars:
 ```
-vpc_cidr     = "10.123.0.0/16"
+vpc_cidr = "10.123.0.0/16"
 public_cidrs = [
-  "10.123.1.0/24",
-  "10.123.2.0/24"
+"10.123.1.0/24",
+"10.123.2.0/24"
 ]
-accessip    = "0.0.0.0/0"
+accessip= "0.0.0.0/0"
 ```
 
 Initialize Terraform:
@@ -2754,7 +2754,7 @@ rm terraform.tfvars
 
 ### Networking Part 2: The Root Module
 In this lesson, we will add the networking module to the root module.
-  
+
 Environment setup:
 ```
 cd ~/terraform/AWS
@@ -2768,21 +2768,21 @@ vi main.tf
 main.tf:
 ```
 provider "aws" {
-  region = "${var.aws_region}"
+region = "${var.aws_region}"
 }
 
 # Deploy Storage Resources
 module "storage" {
-  source       = "./storage"
-  project_name = "${var.project_name}"
+source = "./storage"
+project_name = "${var.project_name}"
 }
 
 # Deploy Networking Resources
 module "networking" {
-  source       = "./networking"
-  vpc_cidr     = "${var.vpc_cidr}"
-  public_cidrs = "${var.public_cidrs}"
-  accessip     = "${var.accessip}"
+source = "./networking"
+vpc_cidr = "${var.vpc_cidr}"
+public_cidrs = "${var.public_cidrs}"
+accessip = "${var.accessip}"
 }
 ```
 
@@ -2802,7 +2802,7 @@ variable "project_name" {}
 #-------networking variables
 variable "vpc_cidr" {}
 variable "public_cidrs" {
-  type = "list"
+type = "list"
 }
 variable "accessip" {}
 ```
@@ -2814,14 +2814,14 @@ vi terraform.tfvars
 
 terraform.tfvars:
 ```
-aws_region   = "us-east-1"
+aws_region = "us-east-1"
 project_name = "la-terraform"
-vpc_cidr     = "10.123.0.0/16"
+vpc_cidr = "10.123.0.0/16"
 public_cidrs = [
-  "10.123.1.0/24",
-  "10.123.2.0/24"
+"10.123.1.0/24",
+"10.123.2.0/24"
 ]
-accessip    = "0.0.0.0/0"
+accessip= "0.0.0.0/0"
 ```
 
 Reinitialize Terraform:
@@ -2848,10 +2848,10 @@ terraform destroy -auto-approve
 
 ### Compute Part 1: AMI Data, Key Pair, and the File Function
 In this lesson, we will start working on building out the resources for out AWS compute.
-  
+
 Environment setup:
 ```
-mkdir -p  ~/terraform/AWS/compute
+mkdir -p~/terraform/AWS/compute
 cd ~/terraform/AWS/compute
 ```
 
@@ -2874,19 +2874,19 @@ main.tf:
 ```
 #----compute/main.tf#----
 data "aws_ami" "server_ami" {
-  most_recent = true
+most_recent = true
 
-  owners = ["amazon"]
+owners = ["amazon"]
 
-  filter {
-    name   = "name"
-    values = ["amzn-ami-hvm*-x86_64-gp2"]
-  }
+filter {
+name = "name"
+values = ["amzn-ami-hvm*-x86_64-gp2"]
+}
 }
 
 resource "aws_key_pair" "tf_auth" {
-  key_name   = "${var.key_name}"
-  public_key = "${file(var.public_key_path)}"
+key_name = "${var.key_name}"
+public_key = "${file(var.public_key_path)}"
 }
 ```
 
@@ -2924,19 +2924,19 @@ Apply the changes:
 ```
 terraform apply -auto-approve
 ```
-  
+
 Provide the values for key_name and public_key_path: key_name: tfkey public_key_path: /home/cloud_user/.ssh/id_rsa.pub
-  
+
 Destroy environment:
 ```
 terraform destroy -auto-approve
 ```
-  
+
 Provide the values for key_name and public_key_path: key_name: tfkey public_key_path: /home/cloud_user/.ssh/id_rsa.pub
 
 ### Compute Part 2: The EC2 Instance
 In this lesson, we will finish off the Compute module by adding the aws_instance resource.
-  
+
 Edit main.tf:
 ```
 vi main.tf
@@ -2947,43 +2947,43 @@ main.tf:
 #-----compute/main.tf#-----
 
 data "aws_ami" "server_ami" {
-  most_recent = true
+most_recent = true
 
-  owners = ["amazon"]
+owners = ["amazon"]
 
-  filter {
-    name   = "name"
-    values = ["amzn-ami-hvm*-x86_64-gp2"]
-  }
+filter {
+name = "name"
+values = ["amzn-ami-hvm*-x86_64-gp2"]
+}
 }
 
 resource "aws_key_pair" "tf_auth" {
-  key_name   = "${var.key_name}"
-  public_key = "${file(var.public_key_path)}"
+key_name = "${var.key_name}"
+public_key = "${file(var.public_key_path)}"
 }
 
 data "template_file" "user-init" {
-  count    = 2
-  template = "${file("${path.module}/userdata.tpl")}"
+count= 2
+template = "${file("${path.module}/userdata.tpl")}"
 
-  vars {
-    firewall_subnets = "${element(var.subnet_ips, count.index)}"
-  }
+vars {
+firewall_subnets = "${element(var.subnet_ips, count.index)}"
+}
 }
 
 resource "aws_instance" "tf_server" {
-  count         = "${var.instance_count}"
-  instance_type = "${var.instance_type}"
-  ami           = "${data.aws_ami.server_ami.id}"
+count = "${var.instance_count}"
+instance_type = "${var.instance_type}"
+ami = "${data.aws_ami.server_ami.id}"
 
-  tags {
-    Name = "tf_server-${count.index +1}"
-  }
+tags {
+Name = "tf_server-${count.index +1}"
+}
 
-  key_name               = "${aws_key_pair.tf_auth.id}"
-  vpc_security_group_ids = ["${var.security_group}"]
-  subnet_id              = "${element(var.subnets, count.index)}"
-  user_data              = "${data.template_file.user-init.*.rendered[count.index]}"
+key_name = "${aws_key_pair.tf_auth.id}"
+vpc_security_group_ids = ["${var.security_group}"]
+subnet_id= "${element(var.subnets, count.index)}"
+user_data= "${data.template_file.user-init.*.rendered[count.index]}"
 }
 ```
 
@@ -3015,7 +3015,7 @@ variable "key_name" {}
 variable "public_key_path" {}
 
 variable "subnet_ips" {
-  type = "list"
+type = "list"
 }
 
 variable "instance_count" {}
@@ -3025,7 +3025,7 @@ variable "instance_type" {}
 variable "security_group" {}
 
 variable "subnets" {
-  type = "list"
+type = "list"
 }
 ```
 
@@ -3039,17 +3039,17 @@ outputs.tf"
 #-----compute/outputs.tf-----
 
 output "server_id" {
-  value = "${join(", ", aws_instance.tf_server.*.id)}"
+value = "${join(", ", aws_instance.tf_server.*.id)}"
 }
 
 output "server_ip" {
-  value = "${join(", ", aws_instance.tf_server.*.public_ip)}"
+value = "${join(", ", aws_instance.tf_server.*.public_ip)}"
 }
 ```
 
 ### Compute Part 3: The Root Module
 In this lesson, we will finish working with the EC2 resources by adding the compute module to the root module.
-  
+
 Edit main.tf:
 ```
 vi main.tf
@@ -3058,33 +3058,33 @@ vi main.tf
 main.tf:
 ```
 provider "aws" {
-  region = "${var.aws_region}"
+region = "${var.aws_region}"
 }
 
 # Deploy Storage Resources
 module "storage" {
-  source       = "./storage"
-  project_name = "${var.project_name}"
+source = "./storage"
+project_name = "${var.project_name}"
 }
 
 # Deploy Networking Resources
 module "networking" {
-  source       = "./networking"
-  vpc_cidr     = "${var.vpc_cidr}"
-  public_cidrs = "${var.public_cidrs}"
-  accessip    = "${var.accessip}"
+source = "./networking"
+vpc_cidr = "${var.vpc_cidr}"
+public_cidrs = "${var.public_cidrs}"
+accessip= "${var.accessip}"
 }
 
 # Deploy Compute Resources
 module "compute" {
-  source          = "./compute"
-  instance_count  = "${var.instance_count}"
-  key_name        = "${var.key_name}"
-  public_key_path = "${var.public_key_path}"
-  instance_type   = "${var.server_instance_type}"
-  subnets         = "${module.networking.public_subnets}"
-  security_group  = "${module.networking.public_sg}"
-  subnet_ips      = "${module.networking.subnet_ips}"
+source= "./compute"
+instance_count= "${var.instance_count}"
+key_name= "${var.key_name}"
+public_key_path = "${var.public_key_path}"
+instance_type = "${var.server_instance_type}"
+subnets = "${module.networking.public_subnets}"
+security_group= "${module.networking.public_sg}"
+subnet_ips= "${module.networking.subnet_ips}"
 }
 ```
 
@@ -3104,7 +3104,7 @@ variable "project_name" {}
 #-------networking variables
 variable "vpc_cidr" {}
 variable "public_cidrs" {
-  type = "list"
+type = "list"
 }
 variable "accessip" {}
 
@@ -3113,7 +3113,7 @@ variable "key_name" {}
 variable "public_key_path" {}
 variable "server_instance_type" {}
 variable "instance_count" {
-  default = 1
+default = 1
 }
 ```
 
@@ -3129,44 +3129,44 @@ outputs.tf:
 #----storage outputs------
 
 output "Bucket Name" {
-  value = "${module.storage.bucketname}"
+value = "${module.storage.bucketname}"
 }
 
 #---Networking Outputs -----
 
 output "Public Subnets" {
-  value = "${join(", ", module.networking.public_subnets)}"
+value = "${join(", ", module.networking.public_subnets)}"
 }
 
 output "Subnet IPs" {
-  value = "${join(", ", module.networking.subnet_ips)}"
+value = "${join(", ", module.networking.subnet_ips)}"
 }
 
 output "Public Security Group" {
-  value = "${module.networking.public_sg}"
+value = "${module.networking.public_sg}"
 }
 
 #---Compute Outputs ------
 
 output "Public Instance IDs" {
-  value = "${module.compute.server_id}"
+value = "${module.compute.server_id}"
 }
 
 output "Public Instance IPs" {
-  value = "${module.compute.server_ip}"
+value = "${module.compute.server_ip}"
 }
 ```
 
 terraform.tfvars:
 ```
-aws_region   = "us-west-1"
+aws_region = "us-west-1"
 project_name = "la-terraform"
-vpc_cidr     = "10.123.0.0/16"
+vpc_cidr = "10.123.0.0/16"
 public_cidrs = [
-  "10.123.1.0/24",
-  "10.123.2.0/24"
+"10.123.1.0/24",
+"10.123.2.0/24"
 ]
-accessip    = "0.0.0.0/0"
+accessip= "0.0.0.0/0"
 key_name = "tf_key"
 public_key_path = "/home/cloud_user/.ssh/id_rsa.pub"
 server_instance_type = "t2.micro"
@@ -3203,7 +3203,7 @@ terraform destroy
 ## Troubleshooting
 ### Troubleshooting Terraform Files
 In this lesson, we will talk about troubleshooting issues in the real world. Sometimes it's nothing more than "XYZ is broken. Go fix it!"
-  
+
 Test your troubleshooting abilities:
 ```
 cd ~/terraform
@@ -3216,7 +3216,7 @@ terraform init
 ## Terraform State
 ### Terraform Formatting and Remote State
 In this lesson, you will learn more about Terraform state and how to version it using a S3 bucket.
-  
+
 #### Create an S3 Bucket
 - Search for S3 in **Find Services**.
 - Click **Create Bucket**.
@@ -3234,7 +3234,7 @@ In this lesson, you will learn more about Terraform state and how to version it 
 
 #### Add Backend to Your Scripts
 From the Docker Swarm Manager navigate to the AWS directory:
-  
+
 - `cd ~/terraform/AWS`
 
 #### Set the Environment Variables
@@ -3243,21 +3243,21 @@ export AWS_ACCESS_KEY_ID="[ACCESS_KEY]"
 export AWS_SECRET_ACCESS_KEY="[SECRET_KEY]]"
 export AWS_DEFAULT_REGION="us-east-1"
 ```
-  
+
 Create `terraform.tf`:
 ```
 vi terraform.tf
 ```
-  
+
 `terraform.tf` contents:
 ```
 terraform {
-  backend "s3" {
-    key    = "terraform-aws/terraform.tfstate"
-  }
+backend "s3" {
+key= "terraform-aws/terraform.tfstate"
+}
 }
 ```
-  
+
 Initialize Terraform:
 ```
 terraform init -backend-config "bucket=[BUCKET_NAME]"
@@ -3303,12 +3303,12 @@ In this lesson, we will and update our CI/CD process to use remote state with ou
 
 #### Create the Jenkins Deploy Job
 - Enter an item name and call it **DeployDockerService**. Select **Pipeline**. Click **Ok**.
-- Click **Add Parameter** and select **String Parameter**. For the name enter **access_key_id**. Set the  Default Value to your Access Key Id.
-- Click **Add Parameter** and select **String Parameter**. For the name enter **secret_access_key**. Set  the Default Value to your Secret Access Key.
+- Click **Add Parameter** and select **String Parameter**. For the name enter **access_key_id**. Set theDefault Value to your Access Key Id.
+- Click **Add Parameter** and select **String Parameter**. For the name enter **secret_access_key**. Setthe Default Value to your Secret Access Key.
 - Click **Add Parameter** and select **String Parameter**. For the name enter **bucket_name**. Set the - Default Value to the name of your S3 Bucket.
-- Click **Add Parameter** and select Choice Parameter. For the name enter **image_name**. For choices  enter ghost:latest and ghost:alpine. Make sure they are on separate lines.
+- Click **Add Parameter** and select Choice Parameter. For the name enter **image_name**. For choicesenter ghost:latest and ghost:alpine. Make sure they are on separate lines.
 - Click **Add Parameter** and select **String Parameter**. For the name enter **ghost_ext_port**. Set the Default Value to **80**.
-  
+
 In the Pipeline section add the following to Script:
 ```
 env.AWS_ACCESS_KEY_ID = "${access_key_id}"
@@ -3316,26 +3316,26 @@ env.AWS_SECRET_ACCESS_KEY = "${secret_access_key}"
 env.AWS_DEFAULT_REGION = 'us-east-1'
 
 node {
-  git (
-    url: 'https://github.com/linuxacademy/content-terraform-docker-service.git',
-    branch: 'remote-state'
-  )
-  stage('init') {
-    sh label: 'terraform init', script: "terraform init -backend-config \"bucket=${bucket_name}\""
-  }
-  stage('plan') {
-    sh label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var image_name=${image_name} -var ghost_ext_port=${ghost_ext_port}"
-  }
-  stage('apply') {
-    sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
-  }
+git (
+url: 'https://github.com/linuxacademy/content-terraform-docker-service.git',
+branch: 'remote-state'
+)
+stage('init') {
+sh label: 'terraform init', script: "terraform init -backend-config \"bucket=${bucket_name}\""
+}
+stage('plan') {
+sh label: 'terraform plan', script: "terraform plan -out=tfplan -input=false -var image_name=${image_name} -var ghost_ext_port=${ghost_ext_port}"
+}
+stage('apply') {
+sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfplan"
+}
 }
 ```
 
 #### Create the Jenkins Destroy Job
 Enter an item name and call it **DestroyDockerService**.
 In Copy from enter **DeployDockerService**. Click **Ok**.
-  
+
 Change Pipeline section to the following:
 ```
 env.AWS_ACCESS_KEY_ID = "${access_key_id}"
@@ -3343,28 +3343,28 @@ env.AWS_SECRET_ACCESS_KEY = "${secret_access_key}"
 env.AWS_DEFAULT_REGION = 'us-east-1'
 
 node {
-  git (
-    url: 'https://github.com/linuxacademy/content-terraform-docker-service.git',
-    branch: 'remote-state'
-  )
-  stage('init') {
-    sh label: 'terraform init', script: "terraform init -backend-config \"bucket=${bucket_name}\""
-  }
-  stage('plan_destroy') {
-    sh label: 'terraform plan', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var image_name=${image_name} -var ghost_ext_port=${ghost_ext_port}"
-  }
-  stage('destroy') {
-    sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfdestroyplan"
-  }
+git (
+url: 'https://github.com/linuxacademy/content-terraform-docker-service.git',
+branch: 'remote-state'
+)
+stage('init') {
+sh label: 'terraform init', script: "terraform init -backend-config \"bucket=${bucket_name}\""
+}
+stage('plan_destroy') {
+sh label: 'terraform plan', script: "terraform plan -destroy -out=tfdestroyplan -input=false -var image_name=${image_name} -var ghost_ext_port=${ghost_ext_port}"
+}
+stage('destroy') {
+sh label: 'terraform apply', script: "terraform apply -lock=false -input=false tfdestroyplan"
+}
 }
 ```
-  
+
 Once Jenkins is running:
 ```
 docker container ls
 docker exec -it 73575a9ee4ac /bin/bash
 ```
-  
+
 Remove `.terraform` file from your project **DeployDockerService** located in `/var/jenkins_home/workspace/`
 ```
 rm -r .terraform
@@ -3373,35 +3373,35 @@ rm -r .terraform
 ## Terraform and Kubernetes
 ### Setting up Kubernetes Installing Terraform
 In this lesson we will setup a Kuberentes master and install Terraform.
-  
+
 Add the following to `kube-config.yml`:
 ```
 apiVersion: kubeadm.k8s.io/v1beta1
 kind: ClusterConfiguration
 networking:
-  podSubnet: 10.244.0.0/16
+podSubnet: 10.244.0.0/16
 apiServer:
-  extraArgs:
-    service-node-port-range: 8000-31274
+extraArgs:
+service-node-port-range: 8000-31274
 ```
-  
+
 Initialize Kubernetes:
 ```
 sudo kubeadm init --config kube-config.yml
 ```
-  
+
 Copy admin.conf to your home directory:
 ```
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
-  
+
 Install Flannel:
 ```
 sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
 ```
-  
+
 Untaint the Kubernetes Master:
 ```
 kubectl taint nodes --all node-role.kubernetes.io/master-
@@ -3409,13 +3409,13 @@ kubectl taint nodes --all node-role.kubernetes.io/master-
 
 #### Install Terraform
 Terraform will be installed on the Swarm manager.
-  
+
 Install Terraform 0.11.13:
 ```
 sudo curl -O https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip
 sudo unzip terraform_0.11.13_linux_amd64.zip -d /usr/local/bin/
 ```
-  
+
 Test the Terraform installation:
 ```
 terraform version
@@ -3423,7 +3423,7 @@ terraform version
 
 ### Creating a Pod
 In this video, we will start working with Kubernetes resources by creating a Pod.
-  
+
 Setup your environment:
 ```
 mkdir -p ~/terraform/pod
@@ -3433,17 +3433,17 @@ cd ~/terraform/pod
 vi `main.tf`:
 ```
 resource "kubernetes_pod" "ghost_alpine" {
-  metadata {
-    name = "ghost-alpine"
-  }
+metadata {
+name = "ghost-alpine"
+}
 
-  spec {
-    host_network = "true"
-    container {
-      image = "ghost:alpine"
-      name  = "ghost-alpine"
-    }
-  }
+spec {
+host_network = "true"
+container {
+image = "ghost:alpine"
+name= "ghost-alpine"
+}
+}
 }
 ```
 
@@ -3479,7 +3479,7 @@ terraform destroy -auto-approve
 
 ### Creating a Pod and Service
 In this lesson, we will create a pod and service using Terraform.
-  
+
 Setup your environment:
 ```
 mkdir -p ~/terraform/service
@@ -3494,39 +3494,39 @@ vi main.tf
 main.tf contents:
 ```
 resource "kubernetes_service" "ghost_service" {
-  metadata {
-    name = "ghost-service"
-  }
-  spec {
-    selector {
-      app = "${kubernetes_pod.ghost_alpine.metadata.0.labels.app}"
-    }
-    port {
-      port = "2368"
-      target_port = "2368"
-      node_port = "8081"
-    }
-    type = "NodePort"
-  }
+metadata {
+name = "ghost-service"
+}
+spec {
+selector {
+app = "${kubernetes_pod.ghost_alpine.metadata.0.labels.app}"
+}
+port {
+port = "2368"
+target_port = "2368"
+node_port = "8081"
+}
+type = "NodePort"
+}
 }
 
 resource "kubernetes_pod" "ghost_alpine" {
-  metadata {
-    name = "ghost-alpine"
-    labels {
-      app = "ghost-blog"
-    }
-  }
+metadata {
+name = "ghost-alpine"
+labels {
+app = "ghost-blog"
+}
+}
 
-  spec {
-    container {
-      image = "ghost:alpine"
-      name  = "ghost-alpine"
-      port  {
-        container_port = "2368"
-      }
-    }
-  }
+spec {
+container {
+image = "ghost:alpine"
+name= "ghost-alpine"
+port{
+container_port = "2368"
+}
+}
+}
 }
 ```
 
@@ -3567,7 +3567,7 @@ terraform destroy -auto-approve
 
 ### Creating a Deployment
 In this lesson, we will use Terraform to create a Kubernetes deployment and service.
-  
+
 Setup your environment:
 ```
 mkdir -p ~/terraform/deployment
@@ -3582,55 +3582,55 @@ vi main.tf
 main.tf contents:
 ```
 resource "kubernetes_service" "ghost_service" {
-  metadata {
-    name = "ghost-service"
-  }
-  spec {
-    selector {
-      app = "${kubernetes_deployment.ghost_deployment.spec.0.template.0.metadata.0.labels.app}"
-    }
-    port {
-      port        = "2368"
-      target_port = "2368"
-      node_port   = "8080"
-    }
+metadata {
+name = "ghost-service"
+}
+spec {
+selector {
+app = "${kubernetes_deployment.ghost_deployment.spec.0.template.0.metadata.0.labels.app}"
+}
+port {
+port= "2368"
+target_port = "2368"
+node_port = "8080"
+}
 
-    type = "NodePort"
-  }
+type = "NodePort"
+}
 }
 
 resource "kubernetes_deployment" "ghost_deployment" {
-  metadata {
-    name = "ghost-blog"
-  }
+metadata {
+name = "ghost-blog"
+}
 
-  spec {
-    replicas = "1"
+spec {
+replicas = "1"
 
-    selector {
-      match_labels {
-        app = "ghost-blog"
-      }
-    }
+selector {
+match_labels {
+app = "ghost-blog"
+}
+}
 
-    template {
-      metadata {
-        labels {
-          app = "ghost-blog"
-        }
-      }
+template {
+metadata {
+labels {
+app = "ghost-blog"
+}
+}
 
-      spec {
-        container {
-          name  = "ghost"
-          image = "ghost:alpine"
-          port {
-            container_port = "2368"
-          }
-        }
-      }
-    }
-  }
+spec {
+container {
+name= "ghost"
+image = "ghost:alpine"
+port {
+container_port = "2368"
+}
+}
+}
+}
+}
 }
 ```
 
@@ -3669,7 +3669,7 @@ terraform destroy -auto-approve
 ## Terraform 0.12
 ### Setup and Disclaimer
 In this lesson, we will install Terraform 0.12.2 and talk about some of the pitfalls you may encounter working with such a new release.
-  
+
 Install Terraform 0.12:
 ```
 cd /tmp
@@ -3715,19 +3715,19 @@ main.tf contents:
 
 # Create a random id
 resource "random_id" "tf_bucket_id" {
-  byte_length = 2
+byte_length = 2
 }
 
 # Create the bucket
 resource "aws_s3_bucket" "tf_code" {
-    bucket        = "${var.project_name}-${random_id.tf_bucket_id.dec}"
-    acl           = "private"
+bucket= "${var.project_name}-${random_id.tf_bucket_id.dec}"
+acl = "private"
 
-    force_destroy =  true
+force_destroy =true
 
-    tags = {
-      Name = "tf_bucket"
-    }
+tags = {
+Name = "tf_bucket"
+}
 }
 ```
 
@@ -3778,19 +3778,19 @@ main.tf contents:
 ```
 # Create a random id
 resource "random_id" "tf_bucket_id" {
-  byte_length = 2
+byte_length = 2
 }
 
 # Create the bucket
 resource "aws_s3_bucket" "tf_code" {
-    bucket        = format("la-terraform-%d", random_id.tf_bucket_id.dec)
-    acl           = "private"
+bucket= format("la-terraform-%d", random_id.tf_bucket_id.dec)
+acl = "private"
 
-    force_destroy =  true
+force_destroy =true
 
-    tags = {
-      Name = "tf_bucket"
-    }
+tags = {
+Name = "tf_bucket"
+}
 }
 ```
 
@@ -3818,7 +3818,7 @@ terraform12 destroy -auto-approve
 
 ### Input Variables
 In this lesson, we will continue refactoring the storage module by adding in variables.
-  
+
 Create variables.tf:
 ```
 vi variables.tf
@@ -3827,7 +3827,7 @@ vi variables.tf
 variables.tf contents:
 ```
 variable "project_name" {
-  type = string
+type = string
 }
 ```
 
@@ -3840,17 +3840,17 @@ main.tf contents:
 ```
 # Create a random id
 resource "random_id" "tf_bucket_id" {
-  byte_length = 2
+byte_length = 2
 }
 
 # Create the bucket
 resource "aws_s3_bucket" "tf_code" {
-    bucket        = format("%s-%d", var.project_name, random_id.tf_bucket_id.dec)
-    acl           = "private"
-    force_destroy =  true
-    tags          = {
-      Name = "tf_bucket"
-    }
+bucket= format("%s-%d", var.project_name, random_id.tf_bucket_id.dec)
+acl = "private"
+force_destroy =true
+tags= {
+Name = "tf_bucket"
+}
 }
 ```
 
@@ -3878,7 +3878,7 @@ terraform12 destroy -var project_name=la-terraform -auto-approve
 
 ### Output Values
 In this lesson, we will finish off refactoring the storage module by adding outputs of the S3 bucket name as well as the project_name variable.
-  
+
 Create outputs.tf:
 ```
 vi outputs.tf
@@ -3887,11 +3887,11 @@ vi outputs.tf
 outputs.tf contents:
 ```
 output "bucketname" {
-  value = aws_s3_bucket.tf_code.id
+value = aws_s3_bucket.tf_code.id
 }
 
 output "project_name" {
-  value = var.project_name
+value = var.project_name
 }
 ```
 
@@ -3912,7 +3912,7 @@ terraform destroy -var project_name=la-terraform -auto-approve
 
 ### Dynamic Nested Blocks Part 1
 In this lesson we will begin working with dynamic nested blocks to dynamically construct nested blocks.
-  
+
 Set up the environment:
 ```
 mkdir ~/terraform/t12/loops
@@ -3923,47 +3923,47 @@ Create main.tf:
 ```
 vi main.tf
 ```
-  
+
 Please note that `default = ["22", "22"]` has been updated to `default = ["22", "80"]`. The video has not been updated yet to reflect this change.
-  
+
 `main.tf` contents:
 ```
 variable "vpc_cidr" {
-  default = "10.123.0.0/16"
+default = "10.123.0.0/16"
 }
 
 variable "accessip" {
-  default = "0.0.0.0/0"
+default = "0.0.0.0/0"
 }
 
 variable "service_ports" {
-  default = ["22", "80"]
+default = ["22", "80"]
 }
 
 resource "aws_vpc" "tf_vpc" {
-  cidr_block           = var.vpc_cidr
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+cidr_block = var.vpc_cidr
+enable_dns_hostnames = true
+enable_dns_support = true
 
-  tags = {
-    Name = "tf_vpc"
-  }
+tags = {
+Name = "tf_vpc"
+}
 }
 
 resource "aws_security_group" "tf_public_sg" {
-  name        = "tf_public_sg"
-  description = "Used for access to the public instances"
-  vpc_id      = aws_vpc.tf_vpc.id
+name= "tf_public_sg"
+description = "Used for access to the public instances"
+vpc_id= aws_vpc.tf_vpc.id
 
-  dynamic "ingress" {
-    for_each = var.service_ports
-    content {
-      from_port   = ingress.value
-      to_port     = ingress.value
-      protocol    = "tcp"
-      cidr_blocks = [var.accessip]
-    }
-  }
+dynamic "ingress" {
+for_each = var.service_ports
+content {
+from_port = ingress.value
+to_port = ingress.value
+protocol= "tcp"
+cidr_blocks = [var.accessip]
+}
+}
 }
 ```
 
@@ -3983,7 +3983,7 @@ terraform12 plan
 
 ### Dynamic Nested Blocks Part 2
 In this lesson, we will continue working with dynamic nested blocks. We will expand on it by using the for expression to loop through a list of maps.
-  
+
 Set up the environment:
 ```
 mkdir ~/terraform/t12/dynamic
@@ -3998,61 +3998,61 @@ vi main.tf
 main.tf contents:
 ```
 variable "vpc_cidr" {
-  default = "10.123.0.0/16"
+default = "10.123.0.0/16"
 }
 
 variable "accessip" {
-  default = "0.0.0.0/0"
+default = "0.0.0.0/0"
 }
 
 variable "service_ports" {
-  default = [
-    {
-      from_port = "22",
-      to_port   = "22"
-    },
-    {
-      from_port = "80",
-      to_port   = "80"
-    }
-  ]
+default = [
+{
+from_port = "22",
+to_port = "22"
+},
+{
+from_port = "80",
+to_port = "80"
+}
+]
 }
 
 resource "aws_vpc" "tf_vpc" {
-  cidr_block           = var.vpc_cidr
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+cidr_block = var.vpc_cidr
+enable_dns_hostnames = true
+enable_dns_support = true
 
-  tags = {
-    Name = "tf_vpc"
-  }
+tags = {
+Name = "tf_vpc"
+}
 }
 
 resource "aws_security_group" "tf_public_sg" {
-  name        = "tf_public_sg"
-  description = "Used for access to the public instances"
-  vpc_id      = aws_vpc.tf_vpc.id
+name= "tf_public_sg"
+description = "Used for access to the public instances"
+vpc_id= aws_vpc.tf_vpc.id
 
-  dynamic "ingress" {
-    for_each = [ for s in var.service_ports: {
-      from_port = s.from_port
-      to_port = s.to_port
-    }]
+dynamic "ingress" {
+for_each = [ for s in var.service_ports: {
+from_port = s.from_port
+to_port = s.to_port
+}]
 
-    content {
-      from_port   = ingress.value.from_port
-      to_port     = ingress.value.to_port
-      protocol    = "tcp"
-      cidr_blocks = [var.accessip]
-    }
-  }
+content {
+from_port = ingress.value.from_port
+to_port = ingress.value.to_port
+protocol= "tcp"
+cidr_blocks = [var.accessip]
+}
+}
 }
 
 output "ingress_port_mapping" {
-  value = {
-    for ingress in aws_security_group.tf_public_sg.ingress:
-    format("From %d", ingress.from_port) => format("To %d", ingress.to_port)
-  }
+value = {
+for ingress in aws_security_group.tf_public_sg.ingress:
+format("From %d", ingress.from_port) => format("To %d", ingress.to_port)
+}
 }
 ```
 
@@ -4081,7 +4081,7 @@ terraform12 destroy -auto-approve
 
 ### Expressions and Functions
 In this lesson, we will look at the documentation for functions. Then, we will use the `cidrsubnet` function to calculate a subnet address within a given IP network address prefix.
-  
+
 Set up the environment:
 ```
 mkdir ~/terraform/t12/functions
@@ -4096,41 +4096,41 @@ vi main.tf
 main.tf contents:
 ```
 variable "vpc_cidr" {
-  default = "10.123.0.0/16"
+default = "10.123.0.0/16"
 }
 
 variable "accessip" {
-  default = "0.0.0.0/0"
+default = "0.0.0.0/0"
 }
 
 variable "subnet_numbers" {
-  default = [1, 2, 3]
+default = [1, 2, 3]
 }
 
 resource "aws_vpc" "tf_vpc" {
-  cidr_block           = var.vpc_cidr
-  enable_dns_hostnames = true
-  enable_dns_support   = true
+cidr_block = var.vpc_cidr
+enable_dns_hostnames = true
+enable_dns_support = true
 
-  tags = {
-    Name = "tf_vpc"
-  }
+tags = {
+Name = "tf_vpc"
+}
 }
 
 resource "aws_security_group" "tf_public_sg" {
-  name        = "tf_public_sg"
-  description = "Used for access to the public instances"
-  vpc_id      = aws_vpc.tf_vpc.id
+name= "tf_public_sg"
+description = "Used for access to the public instances"
+vpc_id= aws_vpc.tf_vpc.id
 
-  ingress {
-    from_port   = "22"
-    to_port     = "22"
-    protocol    = "tcp"
-    cidr_blocks = [
-      for num in var.subnet_numbers:
-      cidrsubnet(aws_vpc.tf_vpc.cidr_block, 8, num)
-    ]
-  }
+ingress {
+from_port = "22"
+to_port = "22"
+protocol= "tcp"
+cidr_blocks = [
+for num in var.subnet_numbers:
+cidrsubnet(aws_vpc.tf_vpc.cidr_block, 8, num)
+]
+}
 }
 ```
 
