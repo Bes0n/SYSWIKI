@@ -636,6 +636,7 @@ Let's ping google.com
 
 - ```dig``` - verify dns related issues. If command not found install **bind-utils**
 - ```dig google.com``` - let's check for google.com dns name
+
 ```
 ; <<>> DiG 9.9.4-RedHat-9.9.4-74.el7_6.2 <<>> google.com
 ;; global options: +cmd
@@ -1198,7 +1199,7 @@ When you run packages install - **ldconfig** runs automatically and solve depend
 ###### 13.8 Using the yum Meta Package Handler
 - ```yum search nmap``` - look if package is available
 - ```cd /etc/yum.repos.d/``` - repository directory.
-  
+
 ```
 -rw-r--r--. 1 root root 1664 Nov 23  2018 CentOS-Base.repo
 -rw-r--r--. 1 root root 1309 Nov 23  2018 CentOS-CR.repo
@@ -1251,14 +1252,14 @@ Main directory of **crond**:
 - ```/etc/crontab```
 - ```/etc/cron.d/``` - you will put your time specific files here, to run them. 
 - ```crontab -e -u``` - create user specific cron job.  
-    - ```/cron.hourly``` \ 
-    - ```/cron.daily``` - all managed by **anacron**. Helper of cron. 
-    - ```/cron.weekly``` /
-    - ```/cron.monthly``` /
+    - ```/cron.hourly```  
+    - ```/cron.daily``` - *cron.* all managed by **anacron**. Helper of cron. 
+    - ```/cron.weekly``` 
+    - ```/cron.monthly``` 
 
 ###### 14.2 Scheduling Tasks with Cron
 - ```vim /etc/crontab``` - get information about **crontab**
-  
+
 ```
 SHELL=/bin/bash
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
@@ -1280,7 +1281,7 @@ MAILTO=root
 - ```*/10 * * * 1-5 logger its a weekday``` - create a job to run every 10 minutes, every hour, every day of month, every month, 5 days in a week. 
 - ```crontab -e -u define user``` - create crontab for defined user
 - ```crontab --help```
-  
+
 ```
 Usage:
  crontab [options] file
@@ -1405,7 +1406,7 @@ MESSAGE_ID=
 - ```journalctl _PID=1``` - search for logs related to the **PID** number **1**
 - ```mkdir -p /var/log/journal``` - **journalctl** is not persistent. To make it persistent we need to create directory **journal** in **/var/log** dir.  
 After creation of this directory, we will have directory created in **journal** dir.  
-  
+
 ```
 [student@centos journal]$ ls -l
 total 0
@@ -1486,7 +1487,7 @@ local7.*                                                /var/log/boot.log
 
 ###### 15.5 Rotating Log Files with logrotate
 - ```/etc/cron.daily/logrotate``` - we have **logrotate** script in **cron.daily** directory
-  
+
 ```
 #!/bin/sh
 
@@ -1499,7 +1500,7 @@ exit 0
 ```
 
 - ```/etc/logrotate.conf``` - configuration file of **logrotate**
-  
+
 ```
  see "man logrotate" for details
 # rotate log files weekly
@@ -1539,7 +1540,7 @@ include /etc/logrotate.d
 ```
 
 - ``` /etc/logrotate.d/ ``` - you can put your own configuration in that directory. 
-  
+
 ```
 [root@centos logrotate.d]# ls -l
 total 20
@@ -1630,11 +1631,13 @@ dm_log                 18411  2 dm_region_hash,dm_mirror
 dm_mod                124461  8 dm_log,dm_mirror
 ```
 
-- ``` modprobe -r cdrom ``` - unload module **cdrom**. 
+- ``` modprobe -r cdrom ``` - unload module **cdrom**.
+
 ```
 [root@centos log]# lsmod | grep cdrom
 cdrom                  42556  1 sr_mod
 ```
+
 - ```modprobe -r sr_mod ``` - we need to unload **sr_mod** before unloading **cdrom** module. 
 - ```modprobe cdrom``` - load **cdrom** module. 
 
@@ -1644,6 +1647,7 @@ cdrom                  42556  0
 ```
 
 - ``` modinfo cdrom ``` - get information about **cdrom** module
+
 ```
 filename:       /lib/modules/3.10.0-957.27.2.el7.x86_64/kernel/drivers/cdrom/cdrom.ko.xz
 license:        GPL
@@ -1668,7 +1672,7 @@ parm:           mrw_format_restart:bool
 - ```dmesg``` - get information about working modules 
 - ```/etc/modprobe.d/``` - configuration items of modprobe. Here we can set up options for modules, to make them loaded automatically
 - ``` echo options cdrom autoclose=1 > cdrom.conf ``` - specific parameter will be automatically activated for **cdrom** module.
-  
+
 ```
 [root@centos modprobe.d]# ls -l
 total 16
@@ -1692,7 +1696,8 @@ major minor  #blocks  name
  253        1     839680 dm-1
 ```
 
-- ``` cat cpuinfo ``` - get information **CPU's** on the system. 
+- ``` cat cpuinfo ``` - get information **CPU's** on the system.
+
 ```
 [root@centos proc]# cat cpuinfo
 processor       : 0
@@ -1722,6 +1727,7 @@ power management:
 ```
 
 - ``` cat meminfo ``` - get information about **memory usage**
+
 ```
 [root@centos proc]# cat meminfo
 MemTotal:        1014956 kB
@@ -1769,10 +1775,12 @@ HugePages_Surp:        0
 Hugepagesize:       2048 kB
 DirectMap4k:       53184 kB
 DirectMap2M:      995328 kB
-```  
+```
+
 *Note: if you type ```ps aux```, system going to look in ```/proc``` directory*
 
 - ``` cd /proc/sys ``` - this directory contains **kernel's tunable**. Which can be switchen **on** or **off**
+
 ```
 [root@centos sys]# ls -l
 total 0
@@ -1808,7 +1816,7 @@ enhanced_dad                ndisc_notify                       use_tempaddr
 - ``` echo 1 > disable_ipv6 ``` - disable **ipv6** protocol. You can't use **vim** on that file. You can only use **echo** for changing configuration in **kernel interface**. But after reboot this settings will be reverted back.
 
 - ``` /etc/sysctl.conf ``` - to find out where **sysctl** configuration stored. Subdirectory used to store configuration. 
-  
+
 ```
 # sysctl settings are defined through files in
 # /usr/lib/sysctl.d/, /run/sysctl.d/, and /etc/sysctl.d/.
@@ -2007,7 +2015,7 @@ As we understand there is no need actual service working, even if we will disabl
     - Unit - generic information about service, dependencies.
     - Service - service definition itself
     - Install - important for target 
-  
+
 ```
 [Unit]
 Description=OpenSSH server daemon
@@ -2038,7 +2046,7 @@ WantedBy=multi-user.target
 ![img](https://raw.githubusercontent.com/Bes0n/LFCS/master/images/img29.JPG)
 
 - another aproach is copy unit file from **/usr/lib/systemd/system** to **/etc/systemd/system** directory. Let's modify content of the **unit file**
-  
+
 ```
 [Unit]
 Description=System Logging Service
@@ -2437,7 +2445,7 @@ Severity: 6
  [1 - owner /etc/apparmor.d/ r,]
 (A)llow / [(D)eny] / (I)gnore / (G)lob / Glob with (E)xtension / (N)ew / Audi(t) / (O)wner permissions off / Abo(r)t / (F)inish
 ```
-  
+
 - Actions:
     - (A)llow
     - (D)eny
@@ -2445,9 +2453,9 @@ Severity: 6
     - (G)lob - if you want **vi** to be allowed to entire **/etc** directory
     - Glob with (E)xtension - if you want **vi** to be allowed to entire **/etc** directory, but only if you have **.swp** directory. 
   
-  
+
 - Let's save our changes
-  
+
 ```
 = Changed Local Profiles =
 
@@ -2532,7 +2540,7 @@ SELINUXTYPE=targeted
     - role 
     - type or context type
 - ```ls -lZ``` - many commands, get information about **context labels**
-  
+
 ```
 [root@centos selinux]# ls -lZ
 -rw-r--r--. root root system_u:object_r:selinux_config_t:s0 config
@@ -2543,7 +2551,7 @@ drwxr-xr-x. root root system_u:object_r:selinux_config_t:s0 tmp
 ```
 
 - ```ps Zaux``` - context type also exists in processes
-  
+
 ```
 system_u:system_r:httpd_t:s0    root      1914  0.0  0.4 224056  5004 ?        Ss   11:46   0:01 /usr/sbin/httpd -DFOREGROUND
 system_u:system_r:httpd_t:s0    apache    1915  0.0  0.2 224056  2960 ?        S    11:46   0:00 /usr/sbin/httpd -DFOREGROUND
@@ -2695,7 +2703,7 @@ tftp_home_dir --> off
     - where **sd** means - SCSI disk
     - **a** - means order of the disk, it means first one. 
     - **1** and **2** - means numbers of partitions - **sda1**, **sda2**
-   
+
 ```
 [root@centos ~]# cat /proc/partitions
 major minor  #blocks  name
@@ -2710,7 +2718,7 @@ major minor  #blocks  name
 ```
 
 - ```fdisk /dev/sdb```:
-  
+
 ```
 [root@centos ~]# fdisk /dev/sdb
 Welcome to fdisk (util-linux 2.23.2).
@@ -2723,7 +2731,7 @@ Building a new DOS disklabel with disk identifier 0xd0482aa3.
 
 Command (m for help):
 ```
-  
+
 - ```Command (m for help): m```:
 ```
 Command action
@@ -2746,7 +2754,6 @@ Command action
    w   write table to disk and exit
    x   extra functionality (experts only)
 ```
-  
 
 - ```Command (m for help): n #n means create new partition```
   
@@ -2787,16 +2794,17 @@ Disk identifier: 0xd0482aa3
 ```
 
 - ```Command (m for help): w``` - write configuration to disk
-  
+
 ```
 The partition table has been altered!
 
 Calling ioctl() to re-read partition table.
+
 Syncing disks.
 ```
 
 - ``` cat /proc/partitions ``` or ```fdisk -l /dev/sdb``` - verify that we have created **sdb1** partition.
-  
+
 ```
 [root@centos ~]# cat /proc/partitions
 major minor  #blocks  name
@@ -2810,7 +2818,7 @@ major minor  #blocks  name
  253        0    6496256 dm-0
  253        1     839680 dm-1
 ```
-  
+
 ```
 [root@centos ~]# fdisk -l /dev/sdb
 
@@ -2833,7 +2841,7 @@ Disk identifier: 0xd0482aa3
     - ```e``` - for **extended** partition
     - ```First sector (1050624-2516581, default 1050624):``` - will search for first available sector
     - ```Last sector, +sectors or +size{K,M,G} (1050624-2516581, default 2516581):``` - will take last sector as default which is really suggested to avoid waste of disk space. 
-  
+
 **IMPORTANT: You create extended partition as your last partition. Everything that won't be available in the extended partition in that case won't be addressable anymore. That will be a waste of the disk space**
 
 ```
@@ -2886,7 +2894,7 @@ Select (default p): l
 
 ###### 19.5 Creating GPT Partitions
 - ```gdisk /dev/sdc``` - **gdisk** is utility for creating **GPT** partitions. For applying it on **MBR** you need to convert your disk.
-  
+
 ```
 [root@centos ~]# gdisk /dev/sdb
 GPT fdisk (gdisk) version 0.8.10
@@ -2897,9 +2905,9 @@ Partition table scan:
   APM: not present
   GPT: not present
 ```
-  
+
 - let's run **?** for help 
-  
+
 ```
 Command (? for help): ?
 b       back up GPT data to a file
@@ -2919,7 +2927,7 @@ w       write table to disk and exit
 x       extra functionality (experts only)
 ?       print this menu
 ```
-  
+
 - ```Command (? for help): n``` - create new partition
 
 - ```Partition number (1-128, default 1): 1``` - select partition number
@@ -2930,7 +2938,7 @@ x       extra functionality (experts only)
 - ```Hex code or GUID (L to show codes, Enter = 8300):``` - default value for **Linux filesystem**
 
 - ```Command (? for help): p``` - get information about or changes. Pretty similar to **fdisk**
-  
+
 ```
 Disk /dev/sdb: 2516582 sectors, 1.2 GiB
 Logical sector size: 512 bytes
@@ -3183,7 +3191,7 @@ Options=defaults
 /dev/sdb1 on /btrfs type btrfs (rw,relatime,seclabel,space_cache,subvolid=5,subvol=/)
 ```
 - ```systemctl status btrfs.mount``` - also accessible from systemctl
- 
+
 ```
 [root@centos system]# systemctl status btrfs.mount
 ● btrfs.mount - Temporary Directory
