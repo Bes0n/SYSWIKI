@@ -84,7 +84,6 @@ Examples:
     * ``` ls | less ``` input of ``` ls ``` filtered by ``` less ```
     * ``` ps aux | grep httpd ```
 - ``` find /proc -name "cpu*" 2> /dev/null ``` - find cpu in /proc directory and send error output to the null device
-- ``` grep -rnw '/path/to/somewhere/' -e 'pattern' ``` - find all files containing specific text
 - ``` history ``` - command line history, to use command from history simple write commands number from history ``` !28 ```
     * history stored in *.bash_history*, you can find this file by typing ``` ls -a ``` - where *-a* means to show hidden files. 
 
@@ -217,6 +216,7 @@ symhosts symbolic link refers to the myhosts hard link:
 ###### 3.12 Using Advanced find options
 - ``` find /etc -name "*hosts*" -exec cp {} find/names \;``` - find all files in '/etc' with name *hosts* and cp all output from find to the directory 'find/names'. '\;' - must be used to exit from exec interpretor. Where **{}** means output of **find** command
 - ``` find /etc -size +100k -exec cp {} find/size \; ``` - look for files more than 100 kilobytes and copy them into the directory 'find/size'
+- ``` grep -rnw '/path/to/somewhere/' -e 'pattern' ``` - find all files containing specific text
 - ``` grep student /etc/* 2>/dev/null ``` - grep will look for files, which contains 'student' word inside
 - ``` find /etc -exec grep -l student {} \; 2>dev/null ``` - find files through grep which contains 'student' word inside 
 - ``` find /etc -exec grep -l student {} \; -exec cp {} find/contents/ \; 2>/dev/null ``` - cp all found files in 'find/contents/' directory and avoid any error messages. 
