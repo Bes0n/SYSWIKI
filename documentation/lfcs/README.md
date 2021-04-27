@@ -85,7 +85,8 @@ Examples:
     * ``` ps aux | grep httpd ```
 - ``` find /proc -name "cpu*" 2> /dev/null ``` - find cpu in /proc directory and send error output to the null device
 - ``` history ``` - command line history, to use command from history simple write commands number from history ``` !28 ```
-    * history stored in *.bash_history*, you can find this file by typing ``` ls -a ``` - where *-a* means to show hidden files. 
+    * history stored in *.bash_history*, you can find this file by typing ``` ls -a ``` - where *-a* means to show hidden files.
+- ```for i in {135..123}; do history -d $i ; done``` - delete specific lines from history
 
 ###### Using bash shell scripts
 * ``` echo who > myscript ``` - create and add line to the file
