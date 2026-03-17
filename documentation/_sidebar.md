@@ -3,6 +3,16 @@
 * [CKA](/cka/)
 * [Terraform](/terraform/)
 * [Ansible](/exansible/)
-* [Python](/python/)
+* [Python](python/README.md)
+  - [Python Basics](python/1-python-basics.md)
+  - [Loops and Sequences](python/2-loops-and-sequences.md)
+  - [Dictionaries and Sets](python/3-dictionaries-and-sets.md)
+  - [Error Handling](python/4-error-handling.md)
+  - [Classes and Objects](python/5-classes-and-objects.md)
+  - [Object-Oriented Programming (OOP)](python/6-oop.md)
+  - [Linear Data Structures](python/7-linear-data-structures.md)
+  - [Algorithms](python/8-algorithms.md)
+  - [Graphs And Trees](python/9-graphs-and-trees.md)
+  - [Dynamic Programming](python/10-dynamic-programming.md)
 
   <!-- - [Quick Start](quickstart.md) -->
