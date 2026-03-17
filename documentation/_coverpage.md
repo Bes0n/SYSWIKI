@@ -5,7 +5,7 @@
 
 > Here you can find documentation related to
 
-- **LFCS** - **CKA** - **Terraform** - **EX407**
+- **LFCS** - **CKA** - **Terraform** - **EX407** - **Python**
 
 Use it for exam preparation or as a hint book. 
 
