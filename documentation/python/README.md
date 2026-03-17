@@ -6,8 +6,8 @@ To earn your Python Certification:
 1. Complete the five required projects to qualify for the certification exam.
 2. Pass the Python Certification exam.
 
-- [Python Basics](1-python-basics.md)
-- [Loops and Sequences](2.%20Loops%20and%20Sequences.md)
+- [Python Basics](/python/1.%20Python%20Basics.md)
+- [Loops and Sequences](/python/2.%20Loops%20and%20Sequences.md)
 - [Dictionaries and Sets](3.%20Dictionaries%20and%20Sets.md)
 - [Error Handling](4.%20Error%20Handling.md)
 - [Classes and Objects](5.%20Classes%20and%20Objects.md)
