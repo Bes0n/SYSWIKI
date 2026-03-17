@@ -3,6 +3,6 @@
 * [CKA](/cka/)
 * [Terraform](/terraform/)
 * [Ansible](/exansible/)
-* [Pytho](/python/)
+* [Python](/python/)
 
   <!-- - [Quick Start](quickstart.md) -->
