@@ -4890,11 +4890,13 @@ kubectl run data-pod --image=busybox --restart=Never -o yaml --dry-run -- /bin/s
 ```
 
 2. Use the following command to edit the `data-pod.yaml` file:
+
 ```
 vi data-pod.yaml
 ```
 
 3. Add the following to the `data-pod.yaml` file:
+
 ```
 apiVersion: v1
 kind: Pod
