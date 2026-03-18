@@ -5039,6 +5039,7 @@ kubectl expose deployment/webfront-deploy --port=80 --target-port=80 --type=Node
 ```
 
 6. Add the name and the nodePort, the complete YAML will look like this:
+
 ```
 apiVersion: v1
 kind: Service
